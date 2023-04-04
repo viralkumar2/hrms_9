@@ -1,5 +1,5 @@
 <?php
-    
+
     $logo = \App\Models\Utility::get_file('uploads/logo/');
     $company_logo = \App\Models\Utility::GetLogo();
     $users = \Auth::user();
@@ -30,7 +30,7 @@
             <?php if(\Auth::user()->type != 'company'): ?>
                 <li class="dash-item">
                     <a href="<?php echo e(route('home')); ?>" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Dashboard')); ?> tes</span></a>
+                                class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Dashboard')); ?> tes new</span></a>
                 </li>
             <?php endif; ?>
             <?php if(\Auth::user()->type == 'company'): ?>
