@@ -68,9 +68,12 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
+
+
         if($user->is_active == 0)
         {
             auth()->logout();
+            return redirect()->route('login');
         }
 
         $user =\Auth::user();

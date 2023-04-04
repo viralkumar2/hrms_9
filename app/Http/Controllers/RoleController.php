@@ -196,4 +196,16 @@ class RoleController extends Controller
 
 
     }
+
+    public function inactive_role($id){
+        $data = Role::where('id',$id)->update(array('activation_status'=>0));
+        return redirect()->back()->with('success','User In-Active Successfully.');
+        
+    }
+
+    public function active_role($id){
+        $data = Role::where('id',$id)->update(array('activation_status'=>1));
+        return redirect()->back()->with('success','User Active Successfully.');
+        
+    }
 }

@@ -43,9 +43,9 @@ class EmployeeController extends Controller
             if (Auth::user()->type == 'employee') {
                 $employees = Employee::where('user_id', '=', Auth::user()->id)->get();
             } else {
-                $employees = Employee::where('created_by', \Auth::user()->creatorId())->get();
+                $employees = Employee::with('login_sts')->where('created_by', \Auth::user()->creatorId())->get();
             }
-
+            // return $employees;
 
             return view('employee.index', compact('employees'));
         } else {

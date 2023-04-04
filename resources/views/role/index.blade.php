@@ -31,6 +31,7 @@
                             <tr>
                                 <th>{{ __('Role') }}</th>
                                 <th>{{ __('Permissions') }}</th>
+                                <th>{{ __('Status') }}</th>
                                 <th width="200px">{{ __('Action') }}</th>
                             </tr>
                         </thead>
@@ -44,6 +45,25 @@
                                                 <a href="#" class="text-white">{{ $permission }}</a>
                                             </span>
                                         @endforeach
+                                    </td>
+                                    <td>
+                                        @if($role->activation_status == 1)
+                                            <div class="action-btn bg-success ms-2">
+                                                <a href="{{route('inactive_role',$role->id)}}" class="mx-3 btn btn-sm  align-items-center bs-pass-para"
+                                                    data-bs-toggle="tooltip" title="" data-bs-original-title="Delete"
+                                                    aria-label="Delete"><i
+                                                        class="ti ti-trash text-white text-white"></i>
+                                                </a>
+                                            </div>
+                                        @else
+                                            <div class="action-btn bg-danger ms-2">
+                                                <a href="{{route('active_role',$role->id)}}" class="mx-3 btn btn-sm  align-items-center bs-pass-para"
+                                                    data-bs-toggle="tooltip" title="" data-bs-original-title="Delete"
+                                                    aria-label="Delete"><i
+                                                        class="ti ti-trash text-white text-white"></i>
+                                                </a>
+                                            </div>
+                                        @endif
                                     </td>
                                     <td class="Action">
                                         <span>
