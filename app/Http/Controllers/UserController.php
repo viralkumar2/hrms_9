@@ -15,11 +15,13 @@ use App\Models\JoiningLetter;
 use App\Models\ExperienceCertificate;
 use App\Models\NOC;
 use File;
+use URL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -45,7 +47,7 @@ class UserController extends Controller
     {
         if (\Auth::user()->can('Create User')) {
             $user  = \Auth::user();
-            $roles = Role::where('created_by', '=', $user->creatorId())->where('name', '!=', 'employee')->get()->pluck('name', 'id');
+            $roles = Role::where('activation_status',1)->where('created_by', '=', $user->creatorId())->where('name', '!=', 'employee')->get()->pluck('name', 'id');
             return view('user.create', compact('roles'));
         } else {
             return response()->json(['error' => __('Permission denied.')], 401);
@@ -387,5 +389,31 @@ class UserController extends Controller
         Notification::where('user_id', '=', $user_id)->update(['is_read' => 1]);
 
         return response()->json(['is_success' => true], 200);
+    }
+
+    public function inactive_user($id){
+        $url =  URL::previous() ;
+        if (str_contains($url, 'user')) { 
+            $data = User::where('id',$id)->update(array('login_status'=>0));
+        }
+        else{
+            $user_id = Employee::find($id);
+            $data = User::where('id',$user_id->user_id)->update(array('login_status'=>0));
+        }
+        return redirect()->back()->with('success','User In-Active Successfully.');
+        
+    }
+
+    public function active_user($id){
+        $url =  URL::previous() ;
+        if (str_contains($url, 'user')) { 
+            $data = User::where('id',$id)->update(array('login_status'=>1));
+        }
+        else{
+            $user_id = Employee::find($id);
+            $data = User::where('id',$user_id->user_id)->update(array('login_status'=>1));
+        }
+        return redirect()->back()->with('success','User Active Successfully.');
+        
     }
 }

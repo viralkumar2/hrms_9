@@ -960,7 +960,11 @@ Route::group(['middleware' => ['verified']], function () {
 
 
     Route::post('change-password', [UserController::class, 'updatePassword'])->name('update.password');
-
+    Route::get('inactive_user/{id}', [UserController::class, 'inactive_user'])->name('inactive_user');
+    Route::get('active_user/{id}', [UserController::class, 'active_user'])->name('active_user');
+    Route::get('inactive_role/{id}', [RoleController::class, 'inactive_role'])->name('inactive_role');
+    Route::get('active_role/{id}', [RoleController::class, 'active_role'])->name('active_role');
+    
     Route::resource('coupons', CouponController::class)->middleware(
         [
             'auth',

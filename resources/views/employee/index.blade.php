@@ -47,6 +47,7 @@
                                 <th>{{ __('Department') }}</th>
                                 <th>{{ __('Designation') }}</th>
                                 <th>{{ __('Date Of Joining') }}</th>
+                                <th>{{ __('Status') }}</th>
                                 @if (Gate::check('Edit Employee') || Gate::check('Delete Employee'))
                                     <th width="200px">{{ __('Action') }}</th>
                                 @endif
@@ -77,6 +78,22 @@
                                     <td>
                                         {{ \Auth::user()->dateFormat($employee->company_doj) }}
                                     </td>
+                                    <td> @can('Delete Employee')
+                                            @if ($employee->login_sts['login_status'] == 0)
+                                                <div class="action-btn bg-danger ms-2">
+                                                    <a href="{{route('active_user',$employee->id)}}" class="mx-3 btn btn-sm  align-items-center bs-pass-para"
+                                                        data-bs-toggle="tooltip" title="Active" data-bs-original-title="Active" aria-label="Active"><i class="ti ti-check  text-white text-white"></i>
+                                                    </a>
+                                                </div>
+                                            @else
+                                                <div class="action-btn bg-success ms-2">
+                                                    <a href="{{route('inactive_user',$employee->id)}}" class="mx-3 btn btn-sm  align-items-center bs-pass-para"
+                                                        data-bs-toggle="tooltip" title="InActive" data-bs-original-title="InActive" aria-label="InActive"><i class="ti ti-check  text-white text-white"></i>
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        @endcan
+                                    </td>
                                     @if (Gate::check('Edit Employee') || Gate::check('Delete Employee'))
                                         <td class="Action">
                                             @if ($employee->is_active == 1)
@@ -92,7 +109,7 @@
                                                         </div>
                                                     @endcan
 
-                                                    @can('Delete Employee')
+                                                    <!-- @can('Delete Employee')
                                                         <div class="action-btn bg-danger ms-2">
                                                             {!! Form::open(['method' => 'DELETE', 'route' => ['employee.destroy', $employee->id], 'id' => 'delete-form-' . $employee->id]) !!}
                                                             <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para"
@@ -101,7 +118,7 @@
                                                                     class="ti ti-trash text-white text-white"></i></a>
                                                             </form>
                                                         </div>
-                                                    @endcan
+                                                    @endcan -->
                                                    
                                                 </span>
                                             @else

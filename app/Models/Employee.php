@@ -43,6 +43,10 @@ class Employee extends Model
     {
         return $this->hasOne('App\Models\PayslipType', 'id', 'salary_type')->pluck('name')->first();
     }
+
+    public function login_sts(){
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
  
     public function get_net_salary()
     {
