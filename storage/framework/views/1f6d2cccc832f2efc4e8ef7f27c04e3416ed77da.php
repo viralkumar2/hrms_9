@@ -9,9 +9,9 @@
     $company_logo_light = \App\Models\Utility::getValByName('company_logo_light');
     $company_favicon = \App\Models\Utility::getValByName('company_favicon');
     $color = isset($settings['theme_color']) ? $settings['theme_color'] : 'theme-4';
-    
+
     $settings = App\Models\Utility::settings();
-    
+
     $currantLang = \App\Models\Utility::languages();
     $SITE_RTL = \App\Models\Utility::getValByName('SITE_RTL');
 ?>
@@ -831,6 +831,121 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+                                    
+                                    <div class="form-group col-md-4">
+                                        <?php echo e(Form::label('company_phone_numbar', __('Phone *'), ['class' => 'col-form-label'])); ?>
+
+                                        <?php echo e(Form::text('company_phone_numbar', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Phone'])); ?>
+
+                                        <?php $__errorArgs = ['company_phone_numbar'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="invalid-company_phone_numbar" role="alert"><strong
+                                                    class="text-danger"><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <?php echo e(Form::label('company_gstin_numbar', __('GSTIN *'), ['class' => 'col-form-label'])); ?>
+
+                                        <?php echo e(Form::text('company_gstin_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company GSTIN'])); ?>
+
+                                        <?php $__errorArgs = ['company_gstin_numbar'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="invalid-company_gstin_numbar" role="alert"><strong
+                                                    class="text-danger"><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <?php echo e(Form::label('company_esic_numbar', __('ESIC*'), ['class' => 'col-form-label'])); ?>
+
+                                        <?php echo e(Form::text('company_esic_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company ESIC'])); ?>
+
+                                        <?php $__errorArgs = ['company_esic_numbar'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="invalid-company_esic_numbar" role="alert"><strong
+                                                    class="text-danger"><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <?php echo e(Form::label('company_pf_numbar', __('PF Number *'), ['class' => 'col-form-label'])); ?>
+
+                                        <?php echo e(Form::text('company_pf_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company PF Number'])); ?>
+
+                                        <?php $__errorArgs = ['company_pf_numbar'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="invalid-company_pf_numbar" role="alert"><strong
+                                                    class="text-danger"><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <?php echo e(Form::label('company_tan_numbar', __('TAN *'), ['class' => 'col-form-label'])); ?>
+
+                                        <?php echo e(Form::text('company_tan_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company TAN'])); ?>
+
+                                        <?php $__errorArgs = ['company_tan_numbar'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="invalid-company_tan_numbar" role="alert"><strong
+                                                    class="text-danger"><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+
+
+                                    <div class="form-group col-md-4">
+                                        <?php echo e(Form::label('company_pec_numbar', __('PEC *'), ['class' => 'col-form-label'])); ?>
+
+                                        <?php echo e(Form::text('company_pec_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company PEC'])); ?>
+
+                                        <?php $__errorArgs = ['company_pec_numbar'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="invalid-company_pec_numbar" role="alert"><strong
+                                                    class="text-danger"><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+
+
+
+
+
+
 
 
                                     <div class="col-md-6">
@@ -1021,7 +1136,7 @@ unset($__errorArgs, $__bag); ?>
                                                             <?php echo Form::close(); ?>
 
                                                         </div>
-                                                    <?php endif; ?>     
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

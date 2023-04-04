@@ -53,7 +53,7 @@ class AuthenticatedSessionController extends Controller
     }*/
 
     public function store(LoginRequest $request)
-    {   
+    {
 
         if(env('RECAPTCHA_MODULE') == 'yes')
         {
@@ -66,7 +66,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        
+
         $user = Auth::user();
         if($user->is_active == 0)
         {
@@ -82,15 +82,15 @@ class AuthenticatedSessionController extends Controller
             {
                 if($plan->duration != 'unlimited')
                 {
-                    $datetime1 = $user->plan_expire_date; 
-                    $datetime2 = date('Y-m-d');  
+                    $datetime1 = $user->plan_expire_date;
+                    $datetime2 = date('Y-m-d');
 
                     // dd($datetime1,$datetime2);
-                
+
                     if(!empty($datetime1) && $datetime1 < $datetime2)
                     {
                         $user->assignplan(1);
-                        
+
                         return redirect()->intended(RouteServiceProvider::HOME)->with('error',__('Yore plan is expired'));
                     }
                 }
@@ -212,7 +212,7 @@ class AuthenticatedSessionController extends Controller
             $validation=[];
         }
         $this->validate($request, $validation);
-        
+
         $request->validate([
             'email' => 'required|email',
         ]);
@@ -225,7 +225,7 @@ class AuthenticatedSessionController extends Controller
             $status = Password::sendResetLink(
                 $request->only('email')
             );
-    
+
             return $status == Password::RESET_LINK_SENT
                         ? back()->with('status', __($status))
                         : back()->withInput($request->only('email'))
@@ -235,9 +235,9 @@ class AuthenticatedSessionController extends Controller
         {
 
             return redirect()->back()->withErrors('E-Mail has been not sent due to SMTP configuration');
-            
+
         }
-  
+
     }
 
     /**
@@ -247,8 +247,8 @@ class AuthenticatedSessionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request)
-    {   
-       
+    {
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

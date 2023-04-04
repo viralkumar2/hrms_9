@@ -13,7 +13,7 @@
 <div class="row">
     <div class="">
         <div class="">
-          
+
             <?php echo e(Form::model($employee, ['route' => ['employee.update', $employee->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data'])); ?>
 
             <div class="row">
@@ -62,6 +62,27 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-12">
+                                <?php echo e(Form::label('marital_status', __('Select Marital*'), ['class' => 'form-label'])); ?>
+
+                                <div class="form-icon-user">
+                                    <select name="marital_status" id="marital_status" class="form-control select2">
+                                        <option value="">-Select Marital-</option>
+                                        <option class="form-check-input"
+                                        <?php echo e($employee->marital_status == 'Single' ? 'selected' : ''); ?> value="Single">Single</option>
+                                        <option class="form-check-input"
+                                        <?php echo e($employee->marital_status == 'Married' ? 'selected' : ''); ?> value="Married">Married</option>
+                                        <option class="form-check-input"
+                                        <?php echo e($employee->marital_status == 'Widowed' ? 'selected' : ''); ?> value="Widowed">Widowed</option>
+                                        <option class="form-check-input"
+                                        <?php echo e($employee->marital_status == 'Separated' ? 'selected' : ''); ?>value="Separated">Separated</option>
+                                        <option class="form-check-input"
+                                        <?php echo e($employee->marital_status == 'Divorced' ? 'selected' : ''); ?>value="Divorced">Divorced</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <?php echo Form::label('address', __('Address'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
                                 <?php echo Form::textarea('address', null, ['class' => 'form-control', 'rows' => 2]); ?>
@@ -101,7 +122,7 @@
                                         <?php echo e(Form::select('department_id', $departments, null, ['class' => 'form-control select2', 'id' => 'department_id', 'required' => 'required'])); ?>
 
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
                                         <?php echo e(Form::label('designation_id', __('Select Designation'), ['class' => 'form-label'])); ?>
 
 
@@ -114,13 +135,75 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <?php echo Form::label('company_doj', 'Company Date Of Joining', ['class' => 'form-label']); ?>
 
-                                        <?php echo Form::date('company_doj', null, ['class' => 'form-control ', 'id' => 'data_picker2', 'required' => 'required']); ?>
+                                    <div class="form-group col-md-6">
+                                        <?php echo e(Form::label('employe_status', __('Employee Status *'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <select name="employe_status" id="employe_status" class="form-control select2">
+                                                <option value="">-Select Employee Status-</option>
+                                                <option class="form-check-input"
+                                                <?php echo e($employee->marital_status == 'Active' ? 'selected' : ''); ?>value="Active">Active</option>
+                                                <option class="form-check-input"
+                                                <?php echo e($employee->marital_status == 'Terminated' ? 'selected' : ''); ?>value="Terminated">Terminated</option>
+                                                <option class="form-check-input"
+                                                <?php echo e($employee->marital_status == 'Deceased' ? 'selected' : ''); ?>value="Deceased">Deceased</option>
+                                                <option class="form-check-input"
+                                                <?php echo e($employee->marital_status == 'Resigned' ? 'selected' : ''); ?>value="Resigned">Resigned</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo e(Form::label('employe_types', __('Employee Types *'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <select name="employe_types" id="employe_types" class="form-control select2">
+                                                <option value="">-Select Employee Status-</option>
+                                                <option class="form-check-input"
+                                                <?php echo e($employee->marital_status == 'Permanent' ? 'selected' : ''); ?>value="Permanent">Permanent</option>
+                                                <option class="form-check-input"
+                                                <?php echo e($employee->marital_status == 'Temporary' ? 'selected' : ''); ?>value="Temporary">Temporary</option>
+                                                <option class="form-check-input"
+                                                <?php echo e($employee->marital_status == 'On Contract' ? 'selected' : ''); ?>value="On Contract">On Contract</option>
+                                                <option class="form-check-input"
+                                                <?php echo e($employee->marital_status == 'Trainee' ? 'selected' : ''); ?>value="Trainee">Trainee</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('Experience', __('Experience'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                        <?php echo Form::text('employee_experience', $employee->employee_experience, ['class' => 'form-control', 'placeholder' => 'Enter Experience']); ?>
 
                                     </div>
-                                   
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('date_of_exit', __('Date on Exit'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                        <?php echo Form::text('date_of_exit', $employee->date_of_exit, ['class' => 'form-control', 'placeholder' => 'Enter Date on Exit']); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('Job_description', __('Job Description'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+
+                                        <?php echo Form::textarea('Job_description', $employee->Job_description, [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter job description',
+                                    ]); ?>
+
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('company_doj', 'Company Date Of Joining', ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::date('company_doj', $employee->company_doj, ['class' => 'form-control ', 'id' => 'data_picker2', 'required' => 'required']); ?>
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -146,7 +229,7 @@
                                                 <span><?php echo e(!empty($employee->department) ? $employee->department->name : ''); ?></span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="info font-style">
                                                 <strong><?php echo e(__('Designation')); ?></strong>
                                                 <span><?php echo e(!empty($employee->designation) ? $employee->designation->name : ''); ?></span>
@@ -190,8 +273,8 @@
                                             </div>
                                             <div class="float-right col-8">
                                                 <input type="hidden" name="emp_doc_id[<?php echo e($document->id); ?>]" id=""
-                                                    value="<?php echo e($document->id); ?>"> 
-                                                
+                                                    value="<?php echo e($document->id); ?>">
+
                                                 <?php
                                                 $employeedoc = !empty($employee->documents)?$employee->documents()->pluck('document_value',__('document_id')):[];
                                                 ?>
@@ -209,18 +292,18 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" 
+unset($__errorArgs, $__bag); ?>"
                                                             <?php if($document->is_required == 1): ?>  <?php endif; ?>
-                                                            name="document[<?php echo e($document->id); ?>]" id="document[<?php echo e($document->id); ?>]" 
+                                                            name="document[<?php echo e($document->id); ?>]" id="document[<?php echo e($document->id); ?>]"
                                                             data-filename="<?php echo e($document->id . '_filename'); ?>" onchange="document.getElementById('<?php echo e('blah'.$key); ?>').src = window.URL.createObjectURL(this.files[0])">
-                                                    </label> 
+                                                    </label>
                                                     <?php
                                                     $logo=\App\Models\Utility::get_file('uploads/document/');
-        
+
                                                     ?>
                                                     
                                                     <img id="<?php echo e('blah'.$key); ?>" src="<?php echo e((isset($employeedoc[$document->id]) && !empty($employeedoc[$document->id])?$logo.'/'.$employeedoc[$document->id]:'')); ?>"  width="50%" />
-    
+
                                                 </div>
 
                                                 <?php if(!empty($employeedoc[$document->id])): ?>
@@ -237,6 +320,190 @@ unset($__errorArgs, $__bag); ?>"
                             </div>
                         </div>
                     </div>
+
+                    
+                    <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5><?php echo e(__('Work Experience-TABLE')); ?></h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('previous_company_name', __('Previous Company'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('previous_company_name', $employee->previous_company_name, [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter previous company',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('previous_job_title', __('Job Title'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('previous_job_title', $employee->previous_job_title, [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter job title',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('previous_from_date', __('From Date'), ['class' => 'form-label']); ?>
+
+                                        <?php echo e(Form::date('previous_from_date', $employee->previous_from_date, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth'])); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('previous_to_date', __('To Date'), ['class' => 'form-label']); ?>
+
+                                        <?php echo e(Form::date('previous_to_date', $employee->previous_to_date, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth'])); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo e(Form::label('previous_company_designation_id', __('Select Designation'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <?php echo e(Form::select('previous_company_designation_id', $designations, null, ['class' => 'form-control select2', 'id' => 'previous_company_designation_id', 'required' => 'required', 'placeholder' => 'Select Designation'])); ?>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('experiance_Job_description', __('Experience Job Description'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+
+                                        <?php echo Form::textarea('experiance_Job_description', $employee->experiance_Job_description, [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter Experience job description',
+                                    ]); ?>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5><?php echo e(__('Education-TABLE')); ?></h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('institute_name', __('Institute Name'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('institute_name', $employee->institute_name, [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter institute name',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('education', __('Education'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('education', old('education'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter education',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('specialization', __('Specialization'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('specialization', old('specialization'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter specialization',
+                                        ]); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('date_of_completion', __('Date of completion'), ['class' => 'form-label']); ?>
+
+                                        <?php echo e(Form::date('date_of_completion', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth'])); ?>
+
+                                    </div>
+
+
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('notes', __('Notes'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+
+                                        <?php echo Form::textarea('notes', old('notes'), [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter notes',
+                                    ]); ?>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     
+                     <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5><?php echo e(__('Dependent')); ?></h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('dependent_name', __('Name'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('dependent_name', old('dependent_name'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter dependent name',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <?php echo e(Form::label('dependent_relation', __('Relation Types *'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <select name="dependent_relation" id="dependent_relation" class="form-control select2">
+                                                <option value="">-Select Relation</option>
+                                                <option value="Father">Father</option>
+                                                <option value="Mother">Mother</option>
+                                                <option value="Brother">Brother</option>
+                                                <option value="Sister">Sister</option>
+                                                <option value="Husband">Husband</option>
+                                                <option value="Wife">Wife</option>
+                                                <option value="Child">Child</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('dependent_dob', __('Date of completion'), ['class' => 'form-label']); ?>
+
+                                        <?php echo e(Form::date('dependent_dob', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth'])); ?>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
                     <div class="col-md-6">
                         <div class="card em-card">
                             <div class="card-header">
@@ -306,7 +573,7 @@ unset($__errorArgs, $__bag); ?>"
                                         <?php $__currentLoopData = $documents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $document): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div class="col-md-12">
                                                 <div class="info">
-                                               
+
                                                     <strong><?php echo e($document->name); ?></strong>
                                                     <span><a href="<?php echo e(!empty($employeedoc[$document->id]) ? $logo . '/' . $employeedoc[$document->id] : ''); ?>"
                                                             target="_blank"><?php echo e(!empty($employeedoc[$document->id]) ? $employeedoc[$document->id] : ''); ?></a></span>
@@ -388,7 +655,7 @@ unset($__errorArgs, $__bag); ?>"
 <?php $__env->startPush('script-page'); ?>
     <script type="text/javascript">
         function getDesignation(did) {
-            
+
             $.ajax({
                 url: '<?php echo e(route('employee.json')); ?>',
                 type: 'POST',
@@ -398,7 +665,7 @@ unset($__errorArgs, $__bag); ?>"
                 },
                 success: function(data) {
                     $('.designation_id').empty();
-                    var emp_selct = ` <select class="form-control  designation_id select2" name="designation_id" id="choices-multiple"
+                    var emp_selct = ` <select class="form-control col-md-12 designation_id select2" name="designation_id" id="choices-multiple"
                                             placeholder="Select Designation" >
                                             </select>`;
                     $('.designation_div').html(emp_selct);

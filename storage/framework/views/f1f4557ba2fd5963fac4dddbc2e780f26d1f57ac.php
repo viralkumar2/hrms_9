@@ -59,7 +59,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar/');
                             <div class="row">
                                 <div class="col-lg-6 col-sm-6">
                                     <div class="form-group">
-                                        <label class="col-form-label text-dark"><?php echo e(__('Name')); ?></label>
+                                        <label class="col-form-label text-dark"><?php echo e(__('Name')); ?> 34</label>
                                         <input class="form-control <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

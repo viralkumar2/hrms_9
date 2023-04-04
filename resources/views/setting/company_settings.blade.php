@@ -9,9 +9,9 @@
     $company_logo_light = \App\Models\Utility::getValByName('company_logo_light');
     $company_favicon = \App\Models\Utility::getValByName('company_favicon');
     $color = isset($settings['theme_color']) ? $settings['theme_color'] : 'theme-4';
-    
+
     $settings = App\Models\Utility::settings();
-    
+
     $currantLang = \App\Models\Utility::languages();
     $SITE_RTL = \App\Models\Utility::getValByName('SITE_RTL');
 @endphp
@@ -673,6 +673,67 @@
                                                     class="text-danger">{{ $message }}</strong></span>
                                         @enderror
                                     </div>
+                                    {{-- //add new column add by viral --}}
+                                    <div class="form-group col-md-4">
+                                        {{ Form::label('company_phone_numbar', __('Phone *'), ['class' => 'col-form-label']) }}
+                                        {{ Form::text('company_phone_numbar', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Phone']) }}
+                                        @error('company_phone_numbar')
+                                            <span class="invalid-company_phone_numbar" role="alert"><strong
+                                                    class="text-danger">{{ $message }}</strong></span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        {{ Form::label('company_gstin_numbar', __('GSTIN *'), ['class' => 'col-form-label']) }}
+                                        {{ Form::text('company_gstin_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company GSTIN']) }}
+                                        @error('company_gstin_numbar')
+                                            <span class="invalid-company_gstin_numbar" role="alert"><strong
+                                                    class="text-danger">{{ $message }}</strong></span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        {{ Form::label('company_esic_numbar', __('ESIC*'), ['class' => 'col-form-label']) }}
+                                        {{ Form::text('company_esic_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company ESIC']) }}
+                                        @error('company_esic_numbar')
+                                            <span class="invalid-company_esic_numbar" role="alert"><strong
+                                                    class="text-danger">{{ $message }}</strong></span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        {{ Form::label('company_pf_numbar', __('PF Number *'), ['class' => 'col-form-label']) }}
+                                        {{ Form::text('company_pf_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company PF Number']) }}
+                                        @error('company_pf_numbar')
+                                            <span class="invalid-company_pf_numbar" role="alert"><strong
+                                                    class="text-danger">{{ $message }}</strong></span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        {{ Form::label('company_tan_numbar', __('TAN *'), ['class' => 'col-form-label']) }}
+                                        {{ Form::text('company_tan_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company TAN']) }}
+                                        @error('company_tan_numbar')
+                                            <span class="invalid-company_tan_numbar" role="alert"><strong
+                                                    class="text-danger">{{ $message }}</strong></span>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="form-group col-md-4">
+                                        {{ Form::label('company_pec_numbar', __('PEC *'), ['class' => 'col-form-label']) }}
+                                        {{ Form::text('company_pec_numbar', null, ['class' => 'form-control ',  'placeholder' => 'Enter Company PEC']) }}
+                                        @error('company_pec_numbar')
+                                            <span class="invalid-company_pec_numbar" role="alert"><strong
+                                                    class="text-danger">{{ $message }}</strong></span>
+                                        @enderror
+                                    </div>
+
+
+
+
+
+
 
 
                                     <div class="col-md-6">
@@ -833,7 +894,7 @@
                                                                 <i class="ti ti-trash text-white"></i></a>
                                                             {!! Form::close() !!}
                                                         </div>
-                                                    @endcan     
+                                                    @endcan
                                                 </td>
                                             </tr>
                                         @endforeach
