@@ -1,5 +1,5 @@
 <?php
-    
+
     $logo = \App\Models\Utility::get_file('uploads/logo/');
     $company_logo = \App\Models\Utility::GetLogo();
     $users = \Auth::user();
