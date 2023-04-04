@@ -30,7 +30,7 @@
             @if (\Auth::user()->type != 'company')
                 <li class="dash-item">
                     <a href="{{ route('home') }}" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-home"></i></span><span class="dash-mtext">{{ __('Dashboard') }} tes</span></a>
+                                class="ti ti-home"></i></span><span class="dash-mtext">{{ __('Dashboard') }} tes new</span></a>
                 </li>
             @endif
             @if (\Auth::user()->type == 'company')
