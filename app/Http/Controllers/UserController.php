@@ -393,7 +393,7 @@ class UserController extends Controller
 
     public function inactive_user($id){
         $url =  URL::previous() ;
-        if (str_contains($url, 'user')) { 
+        if (str_contains($url, 'user')) {
             $data = User::where('id',$id)->update(array('login_status'=>0));
         }
         else{
@@ -401,12 +401,12 @@ class UserController extends Controller
             $data = User::where('id',$user_id->user_id)->update(array('login_status'=>0));
         }
         return redirect()->back()->with('success','User In-Active Successfully.');
-        
+
     }
 
     public function active_user($id){
         $url =  URL::previous() ;
-        if (str_contains($url, 'user')) { 
+        if (str_contains($url, 'user')) {
             $data = User::where('id',$id)->update(array('login_status'=>1));
         }
         else{
@@ -414,6 +414,6 @@ class UserController extends Controller
             $data = User::where('id',$user_id->user_id)->update(array('login_status'=>1));
         }
         return redirect()->back()->with('success','User Active Successfully.');
-        
+
     }
 }

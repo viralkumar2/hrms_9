@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GenerateOfferLetter extends Model
+class RelievingLetter extends Model
 {
-    protected $table = 'generate_offer_letters';
+    use HasFactory;
+    protected $table = 'relievingLetter';
     protected $fillable = [
         'id',
         'lang',
         'content',
         'created_by',
     ];
-
-
 
     public static function replaceVariable($content, $obj)
     {
@@ -847,5 +847,5 @@ class GenerateOfferLetter extends Model
 
     }
 
-
 }
+
