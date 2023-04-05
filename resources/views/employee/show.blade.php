@@ -27,9 +27,9 @@
                             <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
                     </a>
                     <div class="dropdown-menu dash-h-dropdown">
-                        <a href="{{route('joiningletter.download.pdf',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('PDF')}}</a>    
-                    
-                        <a href="{{route('joininglatter.download.doc',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('DOC')}}</a>  
+                        <a href="{{route('joiningletter.download.pdf',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('PDF')}}</a>
+
+                        <a href="{{route('joininglatter.download.doc',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('DOC')}}</a>
                     </div>
                 </li>
             </ul>
@@ -41,9 +41,9 @@
                             <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
                     </a>
                     <div class="dropdown-menu dash-h-dropdown">
-                        <a href="{{route('exp.download.pdf',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('PDF')}}</a>    
-                    
-                        <a href="{{route('exp.download.doc',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('DOC')}}</a>  
+                        <a href="{{route('exp.download.pdf',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('PDF')}}</a>
+
+                        <a href="{{route('exp.download.doc',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('DOC')}}</a>
                     </div>
                 </li>
             </ul>
@@ -55,24 +55,24 @@
                             <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
                     </a>
                     <div class="dropdown-menu dash-h-dropdown">
-                        <a href="{{route('noc.download.pdf',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('PDF')}}</a>    
-                    
-                        <a href="{{route('noc.download.doc',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('DOC')}}</a>  
+                        <a href="{{route('noc.download.pdf',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('PDF')}}</a>
+
+                        <a href="{{route('noc.download.doc',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('DOC')}}</a>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
-    
+
 @endsection
 
 @section('content')
 <div class="row">
-<div class="row">     
+<div class="row">
     <div class="col-xl-12">
 		<div class="row">
 			<div class="col-sm-12 col-md-6">
-                
+
                     <div class="card ">
                     <div class="card-body employee-detail-body fulls-card emp-card">
                     <h5>{{__('Personal Detail')}}</h5>
@@ -114,6 +114,15 @@
                                     <span>{{$employee->address}}</span>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="info text-sm">
+                                    <strong class="font-bold">{{__('Marital')}} :</strong>
+                                    <span>{{$employee->marital_status}}</span>
+                                </div>
+                            </div>
+
+
                             <div class="col-md-6">
                                 <div class="info text-sm">
                                     <strong class="font-bold">{{__('Salary Type')}} :</strong>
@@ -159,16 +168,50 @@
 
                             <div class="col-md-6">
                                 <div class="info text-sm">
+                                    <strong class="font-bold">{{__('Employee Status')}} :</strong>
+                                    <span>{{ $employee->employe_status}}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="info text-sm">
+                                    <strong class="font-bold">{{__('Employee Types')}} :</strong>
+                                    <span>{{ $employee->employe_types}}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="info text-sm">
+                                    <strong class="font-bold">{{__('Experience')}} :</strong>
+                                    <span>{{ $employee->employee_experience}}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="info text-sm">
+                                    <strong class="font-bold">{{__('Date on Exit')}} :</strong>
+                                    <span>{{ $employee->date_of_exit}}</span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="info text-sm">
                                     <strong class="font-bold">{{__('Date Of Joining')}} :</strong>
                                     <span>{{\Auth::user()->dateFormat($employee->company_doj)}}</span>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     </div>
 			</div>
 	    </div>
+
+
+
+
 
         <div class="row">
 			<div class="col-sm-12 col-md-6">
@@ -201,6 +244,146 @@
                     </div>
                     </div>
 			</div>
+
+            {{-- //Work Experience-TABLE --}}
+
+            <div class="col-sm-12 col-md-6">
+
+                <div class="card ">
+                <div class="card-body employee-detail-body fulls-card emp-card">
+                <h5>{{__('Work Experience-TABLE')}}</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Previous Company')}} : </strong>
+                                <span>{{$employee->previous_company_name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info text-sm font-style">
+                                <strong class="font-bold">{{__('Job Title')}} :</strong>
+                                <span>{{$employee->previous_job_title}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('From Date')}} :</strong>
+                                <span>{{$employee->previous_from_date}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('To Date')}} :</strong>
+                                <span>{{$employee->previous_to_date}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Designation')}} :</strong>
+                                <span>{{$employee->previous_company_designation_id}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Experience Job Description')}} :</strong>
+                                <span>{{$employee->experiance_Job_description}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            {{-- //Education-TABLE --}}
+            <div class="col-sm-12 col-md-6">
+
+                <div class="card ">
+                <div class="card-body employee-detail-body fulls-card emp-card">
+                <h5>{{__('Education-TABLE')}}</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Institute Name')}} : </strong>
+                                <span>{{$employee->institute_name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info text-sm font-style">
+                                <strong class="font-bold">{{__('Education')}} :</strong>
+                                <span>{{$employee->education}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Specialization')}} :</strong>
+                                <span>{{$employee->specialization}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Date of completion')}} :</strong>
+                                <span>{{$employee->date_of_completion}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Notes')}} :</strong>
+                                <span>{{$employee->notes}}</span>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            {{-- //Dependent --}}
+
+            <div class="col-sm-12 col-md-6">
+
+                <div class="card ">
+                <div class="card-body employee-detail-body fulls-card emp-card">
+                <h5>{{__('Dependent')}}</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Name')}} : </strong>
+                                <span>{{$employee->dependent_name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info text-sm font-style">
+                                <strong class="font-bold">{{__('Relation ')}} :</strong>
+                                <span>{{$employee->dependent_relation}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info text-sm">
+                                <strong class="font-bold">{{__('Date of completion')}} :</strong>
+                                <span>{{$employee->dependent_dob}}</span>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
             <div class="col-sm-12 col-md-6">
 
                     <div class="card ">
@@ -251,6 +434,9 @@
                     </div>
 			</div>
 	    </div>
+
+
+
 	</div>
 </div>
 </div>

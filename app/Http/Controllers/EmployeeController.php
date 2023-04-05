@@ -251,7 +251,7 @@ class EmployeeController extends Controller
             $designations = Designation::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $employee     = Employee::find($id);
             $employeesId  = \Auth::user()->employeeIdFormat($employee->employee_id);
-
+            // dd($employee);
             return view('employee.edit', compact('employee', 'employeesId', 'branches', 'departments', 'designations', 'documents'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
@@ -492,6 +492,31 @@ class EmployeeController extends Controller
             $employeeData->branch_location     = $employee[16];
             $employeeData->tax_payer_id        = $employee[17];
             $employeeData->created_by          = \Auth::user()->creatorId();
+
+            $employeeData->employe_status        = $employee[19];
+            $employeeData->employe_types        = $employee[20];
+            $employeeData->employee_experience        = $employee[21];
+            $employeeData->date_of_exit        = $employee[22];
+
+            $employeeData->Job_description        = $employee[23];
+            $employeeData->previous_company_name        = $employee[24];
+            $employeeData->previous_job_title        = $employee[25];
+            $employeeData->previous_from_date        = $employee[26];
+            $employeeData->previous_to_date        = $employee[27];
+            $employeeData->previous_company_designation_id        = $employee[28];
+            $employeeData->experiance_Job_description        = $employee[29];
+            $employeeData->institute_name        = $employee[30];
+            $employeeData->education        = $employee[31];
+
+            $employeeData->specialization        = $employee[32];
+            $employeeData->date_of_completion        = $employee[33];
+            $employeeData->notes        = $employee[34];
+            $employeeData->dependent_name        = $employee[35];
+
+            $employeeData->dependent_relation        = $employee[36];
+            $employeeData->dependent_dob        = $employee[37];
+
+
 
             if (empty($employeeData)) {
 

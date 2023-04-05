@@ -127,32 +127,25 @@
                                         {{ Form::label('employe_status', __('Employee Status *'), ['class' => 'form-label']) }}
                                         <div class="form-icon-user">
                                             <select name="employe_status" id="employe_status" class="form-control select2">
-                                                <option value="">-Select Employee Status-</option>
-                                                <option class="form-check-input"
-                                                {{ $employee->marital_status == 'Active' ? 'selected' : '' }}value="Active">Active</option>
-                                                <option class="form-check-input"
-                                                {{ $employee->marital_status == 'Terminated' ? 'selected' : '' }}value="Terminated">Terminated</option>
-                                                <option class="form-check-input"
-                                                {{ $employee->marital_status == 'Deceased' ? 'selected' : '' }}value="Deceased">Deceased</option>
-                                                <option class="form-check-input"
-                                                {{ $employee->marital_status == 'Resigned' ? 'selected' : '' }}value="Resigned">Resigned</option>
+
+                                                <option @if($employee->employe_status == "Active") selected @else  @endif value="Active">Active</option>
+                                                <option @if($employee->employe_status == "Terminated") selected @else  @endif value="Terminated">Terminated</option>
+                                                <option @if($employee->employe_status == "Deceased") selected @else  @endif value="Deceased">Deceased</option>
+                                                <option @if($employee->employe_status == "Resigned") selected @else  @endif value="Resigned">Resigned</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         {{ Form::label('employe_types', __('Employee Types *'), ['class' => 'form-label']) }}
+
                                         <div class="form-icon-user">
                                             <select name="employe_types" id="employe_types" class="form-control select2">
-                                                <option value="">-Select Employee Status-</option>
-                                                <option class="form-check-input"
-                                                {{ $employee->marital_status == 'Permanent' ? 'selected' : '' }}value="Permanent">Permanent</option>
-                                                <option class="form-check-input"
-                                                {{ $employee->marital_status == 'Temporary' ? 'selected' : '' }}value="Temporary">Temporary</option>
-                                                <option class="form-check-input"
-                                                {{ $employee->marital_status == 'On Contract' ? 'selected' : '' }}value="On Contract">On Contract</option>
-                                                <option class="form-check-input"
-                                                {{ $employee->marital_status == 'Trainee' ? 'selected' : '' }}value="Trainee">Trainee</option>
+                                                <option @if($employee->employe_types == "Permanent") selected @else  @endif value="Permanent">Permanent</option>
+                                                <option @if($employee->employe_types == "Temporary") selected @else  @endif value="Temporary">Temporary</option>
+                                                <option @if($employee->employe_types == "On Contract") selected @else @endif value="On Contract">On Contract</option>
+                                                <option @if($employee->employe_types == "Trainee") selected @else @endif value="Trainee">Trainee</option>
+
 
                                             </select>
                                         </div>
@@ -328,9 +321,10 @@
 
                                     <div class="form-group col-md-12">
                                         {{ Form::label('previous_company_designation_id', __('Select Designation'), ['class' => 'form-label']) }}
-                                        <div class="form-icon-user">
-                                            {{ Form::select('previous_company_designation_id', $designations, null, ['class' => 'form-control select2', 'id' => 'previous_company_designation_id', 'required' => 'required', 'placeholder' => 'Select Designation']) }}
-                                        </div>
+                                        {!! Form::text('previous_company_designation_id', $employee->previous_company_designation_id, [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter job designation',
+                                        ]) !!}
                                     </div>
 
                                     <div class="form-group col-md-12">
@@ -420,18 +414,19 @@
                                         ]) !!}
 
                                     </div>
+
                                     <div class="form-group col-md-12">
                                         {{ Form::label('dependent_relation', __('Relation Types *'), ['class' => 'form-label']) }}
                                         <div class="form-icon-user">
                                             <select name="dependent_relation" id="dependent_relation" class="form-control select2">
-                                                <option value="">-Select Relation</option>
-                                                <option value="Father">Father</option>
-                                                <option value="Mother">Mother</option>
-                                                <option value="Brother">Brother</option>
-                                                <option value="Sister">Sister</option>
-                                                <option value="Husband">Husband</option>
-                                                <option value="Wife">Wife</option>
-                                                <option value="Child">Child</option>
+
+                                                <option @if($employee->dependent_relation == "Permanent") selected @else  @endif value="Father">Father</option>
+                                                <option @if($employee->dependent_relation == "Mother") selected @else  @endif value="Mother">Mother</option>
+                                                <option @if($employee->dependent_relation == "Brother") selected @else  @endif value="Brother">Brother</option>
+                                                <option @if($employee->dependent_relation == "Sister") selected @else  @endif value="Sister">Sister</option>
+                                                <option @if($employee->dependent_relation == "Husband") selected @else  @endif value="Husband">Husband</option>
+                                                <option @if($employee->dependent_relation == "Wife") selected @else  @endif value="Wife">Wife</option>
+                                                <option @if($employee->dependent_relation == "Child") selected @else  @endif value="Child">Child</option>
 
                                             </select>
                                         </div>
