@@ -27,7 +27,7 @@ use App\Models\NOC;
 use App\Models\Termination;
 
 
-//use Faker\Provider\File;
+//use Faker\Provider\File;1212
 
 class EmployeeController extends Controller
 {
