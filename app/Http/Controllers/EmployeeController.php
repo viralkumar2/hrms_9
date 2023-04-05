@@ -184,6 +184,7 @@ class EmployeeController extends Controller
             );
 
             if ($request->hasFile('document')) {
+
                 foreach ($request->document as $key => $document) {
 
                     $filenameWithExt = $request->file('document')[$key]->getClientOriginalName();
