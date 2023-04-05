@@ -67,6 +67,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group col-md-12">
+                                        <?php echo e(Form::label('marital_status', __('Select Marital*'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <select name="marital_status" id="marital_status" class="form-control select2">
+                                                <option value="">-Select Marital-</option>
+                                                <option value="Single">Single</option>
+                                                <option value="Married">Married</option>
+                                                <option value="Widowed">Widowed</option>
+                                                <option value="Separated">Separated</option>
+                                                <option value="Divorced">Divorced</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group col-md-6">
                                         <?php echo Form::label('email', __('Email'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
                                         <?php echo Form::email('email', old('email'), [
@@ -76,6 +91,7 @@
                                         ]); ?>
 
                                     </div>
+
                                     <div class="form-group col-md-6">
                                         <?php echo Form::label('password', __('Password'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
                                         <?php echo Form::password('password', [
@@ -142,6 +158,60 @@
 
                                         </div>
                                     </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo e(Form::label('branch_id', __('Employee Status *'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <select name="employe_status" id="employe_status" class="form-control select2">
+                                                <option value="">-Select Employee Status-</option>
+                                                <option value="Active">Active</option>
+                                                <option value="Terminated">Terminated</option>
+                                                <option value="Deceased">Deceased</option>
+                                                <option value="Resigned">Resigned</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo e(Form::label('employe_types', __('Employee Types *'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <select name="employe_types" id="employe_types" class="form-control select2">
+                                                <option value="">-Select Employee Status-</option>
+                                                <option value="Permanent">Permanent</option>
+                                                <option value="Temporary">Temporary</option>
+                                                <option value="On Contract">On Contract</option>
+                                                <option value="Trainee">Trainee</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('Experience', __('Experience'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                        <?php echo Form::text('employee_experience', old('employee_experience'), ['class' => 'form-control', 'placeholder' => 'Enter Experience']); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('date_of_exit', __('Date on Exit'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                        <?php echo Form::text('date_of_exit', old('date_of_exit'), ['class' => 'form-control', 'placeholder' => 'Enter Experience']); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('Job_description', __('Job Description'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+
+                                        <?php echo Form::textarea('Job_description', old('Job_description'), [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter job description',
+                                    ]); ?>
+
+                                    </div>
+
+
                                     <div class="form-group">
                                         <?php echo Form::label('company_doj', __('Company Date Of Joining'), ['class' => '  form-label']); ?>
 
@@ -206,6 +276,188 @@ unset($__errorArgs, $__bag); ?>"
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5><?php echo e(__('Work Experience-TABLE')); ?></h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('previous_company_name', __('Previous Company'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('previous_company_name', old('previous_company_name'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter previous company',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('previous_job_title', __('Job Title'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('previous_job_title', old('previous_job_title'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter job title',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('previous_from_date', __('From Date'), ['class' => 'form-label']); ?>
+
+                                        <?php echo e(Form::date('previous_from_date', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth'])); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('previous_to_date', __('To Date'), ['class' => 'form-label']); ?>
+
+                                        <?php echo e(Form::date('previous_to_date', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth'])); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo e(Form::label('previous_company_designation_id', __('Select Designation'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <?php echo e(Form::select('previous_company_designation_id', $designations, null, ['class' => 'form-control select2', 'id' => 'previous_company_designation_id', 'required' => 'required', 'placeholder' => 'Select Designation'])); ?>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('experiance_Job_description', __('Experience Job Description'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+
+                                        <?php echo Form::textarea('experiance_Job_description', old('experiance_Job_description'), [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter Experience job description',
+                                    ]); ?>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5><?php echo e(__('Education-TABLE')); ?></h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('institute_name', __('Institute Name'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('institute_name', old('institute_name'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter institute name',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('education', __('Education'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('education', old('education'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter education',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('specialization', __('Specialization'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('specialization', old('specialization'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter specialization',
+                                        ]); ?>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <?php echo Form::label('date_of_completion', __('Date of completion'), ['class' => 'form-label']); ?>
+
+                                        <?php echo e(Form::date('date_of_completion', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth'])); ?>
+
+                                    </div>
+
+
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('notes', __('Notes'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+
+                                        <?php echo Form::textarea('notes', old('notes'), [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter notes',
+                                    ]); ?>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     
+                     <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5><?php echo e(__('Dependent')); ?></h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('dependent_name', __('Name'), ['class' => 'form-label']); ?>
+
+                                        <?php echo Form::text('dependent_name', old('dependent_name'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter dependent name',
+                                        ]); ?>
+
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <?php echo e(Form::label('dependent_relation', __('Relation Types *'), ['class' => 'form-label'])); ?>
+
+                                        <div class="form-icon-user">
+                                            <select name="dependent_relation" id="dependent_relation" class="form-control select2">
+                                                <option value="">-Select Relation</option>
+                                                <option value="Father">Father</option>
+                                                <option value="Mother">Mother</option>
+                                                <option value="Brother">Brother</option>
+                                                <option value="Sister">Sister</option>
+                                                <option value="Husband">Husband</option>
+                                                <option value="Wife">Wife</option>
+                                                <option value="Child">Child</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        <?php echo Form::label('dependent_dob', __('Date of completion'), ['class' => 'form-label']); ?>
+
+                                        <?php echo e(Form::date('dependent_dob', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth'])); ?>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
                     <div class="col-md-6 ">
                         <div class="card em-card">
                             <div class="card-header">
@@ -327,8 +579,6 @@ unset($__errorArgs, $__bag); ?>"
                     new Choices('#choices-multiple', {
                         removeItemButton: true,
                     });
-
-
                 }
             });
         }

@@ -55,6 +55,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
+
         if (\Auth::user()->can('Create Employee')) {
             $company_settings = Utility::settings();
             $documents        = Document::where('created_by', \Auth::user()->creatorId())->get();
@@ -150,11 +151,40 @@ class EmployeeController extends Controller
                     'branch_location' => $request['branch_location'],
                     'tax_payer_id' => $request['tax_payer_id'],
                     'created_by' => \Auth::user()->creatorId(),
+                    //new field add By viral
+                    'marital_status'    => $request->marital_status,
+                    'employe_status'    => $request->employe_status,
+                    'employe_types'    => $request->employe_types,
+                    'employee_experience'    => $request->employee_experience,
+                    'date_of_exit'    => $request->date_of_exit,
+                    'Job_description'    => $request->Job_description,
+
+                    //previous_company_name
+
+                    'previous_company_name'    => $request->previous_company_name,
+                    'previous_job_title'       => $request->previous_job_title,
+                    'previous_from_date'       => $request->previous_from_date,
+                    'previous_to_date'         => $request->previous_to_date,
+                    'previous_company_designation_id'=> $request->previous_company_designation_id,
+                    'experiance_Job_description'    => $request->experiance_Job_description,
+
+                    //Education
+                    'institute_name'    => $request->institute_name,
+                    'education'    => $request->education,
+                    'specialization'    => $request->specialization,
+                    'date_of_completion'    =>  $request->date_of_completion,
+                    'notes' => $request->notes,
+                    //Dependent
+                    'dependent_name'  => $request->dependent_name,
+                    'dependent_relation'  => $request->dependent_relation,
+                    'dependent_dob'  => $request->dependent_dob,
+
                 ]
 
             );
 
             if ($request->hasFile('document')) {
+
                 foreach ($request->document as $key => $document) {
 
                     $filenameWithExt = $request->file('document')[$key]->getClientOriginalName();

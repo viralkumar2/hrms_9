@@ -14,7 +14,7 @@
 <div class="row">
     <div class="">
         <div class="">
-          
+
             {{ Form::model($employee, ['route' => ['employee.update', $employee->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) }}
             <div class="row">
                 <div class="col-md-6 ">
@@ -59,6 +59,26 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-12">
+                                {{ Form::label('marital_status', __('Select Marital*'), ['class' => 'form-label']) }}
+                                <div class="form-icon-user">
+                                    <select name="marital_status" id="marital_status" class="form-control select2">
+                                        <option value="">-Select Marital-</option>
+                                        <option class="form-check-input"
+                                        {{ $employee->marital_status == 'Single' ? 'selected' : '' }} value="Single">Single</option>
+                                        <option class="form-check-input"
+                                        {{ $employee->marital_status == 'Married' ? 'selected' : '' }} value="Married">Married</option>
+                                        <option class="form-check-input"
+                                        {{ $employee->marital_status == 'Widowed' ? 'selected' : '' }} value="Widowed">Widowed</option>
+                                        <option class="form-check-input"
+                                        {{ $employee->marital_status == 'Separated' ? 'selected' : '' }}value="Separated">Separated</option>
+                                        <option class="form-check-input"
+                                        {{ $employee->marital_status == 'Divorced' ? 'selected' : '' }}value="Divorced">Divorced</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 {!! Form::label('address', __('Address'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
                                 {!! Form::textarea('address', null, ['class' => 'form-control', 'rows' => 2]) !!}
@@ -90,7 +110,7 @@
                                         {{ Form::label('department_id', __('Select Department*'), ['class' => 'form-label']) }}
                                         {{ Form::select('department_id', $departments, null, ['class' => 'form-control select2', 'id' => 'department_id', 'required' => 'required']) }}
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
                                         {{ Form::label('designation_id', __('Select Designation'), ['class' => 'form-label']) }}
 
 
@@ -102,11 +122,68 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('company_doj', 'Company Date Of Joining', ['class' => 'form-label']) !!}
-                                        {!! Form::date('company_doj', null, ['class' => 'form-control ', 'id' => 'data_picker2', 'required' => 'required']) !!}
+                                        {{ Form::label('employe_status', __('Employee Status *'), ['class' => 'form-label']) }}
+                                        <div class="form-icon-user">
+                                            <select name="employe_status" id="employe_status" class="form-control select2">
+                                                <option value="">-Select Employee Status-</option>
+                                                <option class="form-check-input"
+                                                {{ $employee->marital_status == 'Active' ? 'selected' : '' }}value="Active">Active</option>
+                                                <option class="form-check-input"
+                                                {{ $employee->marital_status == 'Terminated' ? 'selected' : '' }}value="Terminated">Terminated</option>
+                                                <option class="form-check-input"
+                                                {{ $employee->marital_status == 'Deceased' ? 'selected' : '' }}value="Deceased">Deceased</option>
+                                                <option class="form-check-input"
+                                                {{ $employee->marital_status == 'Resigned' ? 'selected' : '' }}value="Resigned">Resigned</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                   
+
+                                    <div class="form-group col-md-6">
+                                        {{ Form::label('employe_types', __('Employee Types *'), ['class' => 'form-label']) }}
+                                        <div class="form-icon-user">
+                                            <select name="employe_types" id="employe_types" class="form-control select2">
+                                                <option value="">-Select Employee Status-</option>
+                                                <option class="form-check-input"
+                                                {{ $employee->marital_status == 'Permanent' ? 'selected' : '' }}value="Permanent">Permanent</option>
+                                                <option class="form-check-input"
+                                                {{ $employee->marital_status == 'Temporary' ? 'selected' : '' }}value="Temporary">Temporary</option>
+                                                <option class="form-check-input"
+                                                {{ $employee->marital_status == 'On Contract' ? 'selected' : '' }}value="On Contract">On Contract</option>
+                                                <option class="form-check-input"
+                                                {{ $employee->marital_status == 'Trainee' ? 'selected' : '' }}value="Trainee">Trainee</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('Experience', __('Experience'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        {!! Form::text('employee_experience', $employee->employee_experience, ['class' => 'form-control', 'placeholder' => 'Enter Experience']) !!}
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('date_of_exit', __('Date on Exit'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        {!! Form::text('date_of_exit', $employee->date_of_exit, ['class' => 'form-control', 'placeholder' => 'Enter Date on Exit']) !!}
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        {!! Form::label('Job_description', __('Job Description'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+
+                                        {!! Form::textarea('Job_description', $employee->Job_description, [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter job description',
+                                    ]) !!}
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        {!! Form::label('company_doj', 'Company Date Of Joining', ['class' => 'form-label']) !!}
+                                        {!! Form::date('company_doj', $employee->company_doj, ['class' => 'form-control ', 'id' => 'data_picker2', 'required' => 'required']) !!}
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -132,7 +209,7 @@
                                                 <span>{{ !empty($employee->department) ? $employee->department->name : '' }}</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="info font-style">
                                                 <strong>{{ __('Designation') }}</strong>
                                                 <span>{{ !empty($employee->designation) ? $employee->designation->name : '' }}</span>
@@ -175,8 +252,8 @@
                                             </div>
                                             <div class="float-right col-8">
                                                 <input type="hidden" name="emp_doc_id[{{ $document->id }}]" id=""
-                                                    value="{{ $document->id }}"> 
-                                                
+                                                    value="{{ $document->id }}">
+
                                                 @php
                                                 $employeedoc = !empty($employee->documents)?$employee->documents()->pluck('document_value',__('document_id')):[];
                                                 @endphp
@@ -186,18 +263,18 @@
                                                                 class="ti ti-upload px-1"></i>{{ __('Choose file here') }}
                                                         </div>
                                                         <input type="file"
-                                                            class="form-control file  d-none @error('document') is-invalid @enderror" 
+                                                            class="form-control file  d-none @error('document') is-invalid @enderror"
                                                             @if ($document->is_required == 1)  @endif
-                                                            name="document[{{ $document->id }}]" id="document[{{ $document->id }}]" 
+                                                            name="document[{{ $document->id }}]" id="document[{{ $document->id }}]"
                                                             data-filename="{{ $document->id . '_filename' }}" onchange="document.getElementById('{{'blah'.$key}}').src = window.URL.createObjectURL(this.files[0])">
-                                                    </label> 
+                                                    </label>
                                                     @php
                                                     $logo=\App\Models\Utility::get_file('uploads/document/');
-        
+
                                                     @endphp
                                                     {{-- <a href="#"><p class="{{ $document->id . '_filename' }} "></p></a> --}}
                                                     <img id="{{'blah'.$key}}" src="{{ (isset($employeedoc[$document->id]) && !empty($employeedoc[$document->id])?$logo.'/'.$employeedoc[$document->id]:'') }}"  width="50%" />
-    
+
                                                 </div>
 
                                                 @if (!empty($employeedoc[$document->id]))
@@ -214,6 +291,165 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- //Work Experience-TABLE --}}
+                    <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5>{{ __('Work Experience-TABLE') }}</h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('previous_company_name', __('Previous Company'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('previous_company_name', $employee->previous_company_name, [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter previous company',
+                                        ]) !!}
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('previous_job_title', __('Job Title'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('previous_job_title', $employee->previous_job_title, [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter job title',
+                                        ]) !!}
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('previous_from_date', __('From Date'), ['class' => 'form-label']) !!}
+                                        {{ Form::date('previous_from_date', $employee->previous_from_date, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('previous_to_date', __('To Date'), ['class' => 'form-label']) !!}
+                                        {{ Form::date('previous_to_date', $employee->previous_to_date, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        {{ Form::label('previous_company_designation_id', __('Select Designation'), ['class' => 'form-label']) }}
+                                        <div class="form-icon-user">
+                                            {{ Form::select('previous_company_designation_id', $designations, null, ['class' => 'form-control select2', 'id' => 'previous_company_designation_id', 'required' => 'required', 'placeholder' => 'Select Designation']) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        {!! Form::label('experiance_Job_description', __('Experience Job Description'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+
+                                        {!! Form::textarea('experiance_Job_description', $employee->experiance_Job_description, [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter Experience job description',
+                                    ]) !!}
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- //Education tables --}}
+                    <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5>{{ __('Education-TABLE') }}</h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('institute_name', __('Institute Name'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('institute_name', $employee->institute_name, [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter institute name',
+                                        ]) !!}
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('education', __('Education'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('education', old('education'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter education',
+                                        ]) !!}
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('specialization', __('Specialization'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('specialization', old('specialization'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter specialization',
+                                        ]) !!}
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('date_of_completion', __('Date of completion'), ['class' => 'form-label']) !!}
+                                        {{ Form::date('date_of_completion', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
+                                    </div>
+
+
+
+                                    <div class="form-group col-md-12">
+                                        {!! Form::label('notes', __('Notes'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+
+                                        {!! Form::textarea('notes', old('notes'), [
+                                        'class' => 'form-control',
+                                        'rows' => 2,
+                                        'placeholder' => 'Enter notes',
+                                    ]) !!}
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     {{-- //Dependenttables --}}
+                     <div class="col-md-6 ">
+                        <div class="card em-card">
+                            <div class="card-header">
+                                <h5>{{ __('Dependent') }}</h5>
+                            </div>
+                            <div class="card-body employee-detail-create-body">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        {!! Form::label('dependent_name', __('Name'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('dependent_name', old('dependent_name'), [
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter dependent name',
+                                        ]) !!}
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        {{ Form::label('dependent_relation', __('Relation Types *'), ['class' => 'form-label']) }}
+                                        <div class="form-icon-user">
+                                            <select name="dependent_relation" id="dependent_relation" class="form-control select2">
+                                                <option value="">-Select Relation</option>
+                                                <option value="Father">Father</option>
+                                                <option value="Mother">Mother</option>
+                                                <option value="Brother">Brother</option>
+                                                <option value="Sister">Sister</option>
+                                                <option value="Husband">Husband</option>
+                                                <option value="Wife">Wife</option>
+                                                <option value="Child">Child</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        {!! Form::label('dependent_dob', __('Date of completion'), ['class' => 'form-label']) !!}
+                                        {{ Form::date('dependent_dob', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- // --}}
+
                     <div class="col-md-6">
                         <div class="card em-card">
                             <div class="card-header">
@@ -271,7 +507,7 @@
                                         @foreach ($documents as $key => $document)
                                             <div class="col-md-12">
                                                 <div class="info">
-                                               
+
                                                     <strong>{{ $document->name }}</strong>
                                                     <span><a href="{{ !empty($employeedoc[$document->id]) ? $logo . '/' . $employeedoc[$document->id] : '' }}"
                                                             target="_blank">{{ !empty($employeedoc[$document->id]) ? $employeedoc[$document->id] : '' }}</a></span>
@@ -352,7 +588,7 @@
 @push('script-page')
     <script type="text/javascript">
         function getDesignation(did) {
-            
+
             $.ajax({
                 url: '{{ route('employee.json') }}',
                 type: 'POST',
@@ -362,7 +598,7 @@
                 },
                 success: function(data) {
                     $('.designation_id').empty();
-                    var emp_selct = ` <select class="form-control  designation_id select2" name="designation_id" id="choices-multiple"
+                    var emp_selct = ` <select class="form-control col-md-12 designation_id select2" name="designation_id" id="choices-multiple"
                                             placeholder="Select Designation" >
                                             </select>`;
                     $('.designation_div').html(emp_selct);

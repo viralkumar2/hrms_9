@@ -344,6 +344,12 @@ class SettingsController extends Controller
                     'company_country' => 'required',
                     'company_telephone' => 'required',
                     'timezone' => 'required',
+                    "company_phone_numbar" => "required",
+                    "company_gstin_numbar" => "required",
+                    "company_esic_numbar" => "required",
+                    "company_pf_numbar" => "required",
+                    "company_tan_numbar" => "required",
+                    "company_pec_numbar" => "required",
                 ]
             );
 
@@ -433,7 +439,7 @@ class SettingsController extends Controller
                     // 'google_calender_json_file' => 'required',
                 ]
             );
-            if ($validator->fails()) {  
+            if ($validator->fails()) {
                 $messages = $validator->getMessageBag();
                 return redirect()->back()->with('error', $messages->first());
             }
@@ -621,7 +627,7 @@ class SettingsController extends Controller
                     'max:' . '20480',
                 ];
                 $path = Utility::upload_file($request, 'company_logo_light', $logoName, $dir, $validation);
-                // dd($path); 
+                // dd($path);
                 // $company_logo_light = !empty($request->company_logo_light) ? $logoName : 'logo-light.png';
 
                 \DB::insert(

@@ -65,10 +65,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        {{ Form::label('marital_status', __('Select Marital*'), ['class' => 'form-label']) }}
+                                        {{ Form::label('branch_id', __('Select Branch*'), ['class' => 'form-label']) }}
                                         <div class="form-icon-user">
                                             <select name="marital_status" id="marital_status" class="form-control select2">
-                                                <option value="">-Select Marital-</option>
+                                                <option value="">-Select Marital Status-</option>
                                                 <option value="Single">Single</option>
                                                 <option value="Married">Married</option>
                                                 <option value="Widowed">Widowed</option>
@@ -185,7 +185,6 @@
                                         {!! Form::text('date_of_exit', old('date_of_exit'), ['class' => 'form-control', 'placeholder' => 'Enter Experience']) !!}
                                     </div>
 
-
                                     <div class="form-group col-md-12">
                                         {!! Form::label('Job_description', __('Job Description'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
 
@@ -260,29 +259,29 @@
                             <div class="card-body employee-detail-create-body">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('previous_company_name', __('Previous Company'), ['class' => 'form-label']) !!}
-                                        {!! Form::text('previous_company_name', old('previous_company_name'), [
+                                        {!! Form::label('account_holder_name', __('Previous Company'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('account_holder_name', old('account_holder_name'), [
                                             'class' => 'form-control',
-                                            'placeholder' => 'Enter previous company',
+                                            'placeholder' => 'Enter Previous Company',
                                         ]) !!}
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('previous_job_title', __('Job Title'), ['class' => 'form-label']) !!}
-                                        {!! Form::text('previous_job_title', old('previous_job_title'), [
+                                        {!! Form::label('account_number', __('Job Title'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('account_number', old('account_number'), [
                                             'class' => 'form-control',
-                                            'placeholder' => 'Enter job title',
+                                            'placeholder' => 'Enter Job Title',
                                         ]) !!}
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('previous_from_date', __('From Date'), ['class' => 'form-label']) !!}
-                                        {{ Form::date('previous_from_date', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
+                                        {!! Form::label('bank_name', __('From Date'), ['class' => 'form-label']) !!}
+                                        {{ Form::date('dob', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('previous_to_date', __('To Date'), ['class' => 'form-label']) !!}
-                                        {{ Form::date('previous_to_date', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
+                                        {!! Form::label('bank_name', __('To Date'), ['class' => 'form-label']) !!}
+                                        {{ Form::date('dob', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
                                     </div>
 
                                     <div class="form-group col-md-12">
@@ -317,43 +316,43 @@
                             <div class="card-body employee-detail-create-body">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('institute_name', __('Institute Name'), ['class' => 'form-label']) !!}
-                                        {!! Form::text('institute_name', old('institute_name'), [
+                                        {!! Form::label('account_holder_name', __('Institute Name'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('account_holder_name', old('account_holder_name'), [
                                             'class' => 'form-control',
-                                            'placeholder' => 'Enter institute name',
+                                            'placeholder' => 'Enter Previous Company',
                                         ]) !!}
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('education', __('Education'), ['class' => 'form-label']) !!}
-                                        {!! Form::text('education', old('education'), [
+                                        {!! Form::label('account_number', __('Education'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('account_number', old('account_number'), [
                                             'class' => 'form-control',
-                                            'placeholder' => 'Enter education',
+                                            'placeholder' => 'Enter Job Title',
                                         ]) !!}
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('specialization', __('Specialization'), ['class' => 'form-label']) !!}
-                                        {!! Form::text('specialization', old('specialization'), [
+                                        {!! Form::label('Specialization', __('Specialization'), ['class' => 'form-label']) !!}
+                                        {!! Form::text('Specialization', old('Specialization'), [
                                             'class' => 'form-control',
-                                            'placeholder' => 'Enter specialization',
+                                            'placeholder' => 'Enter Specialization',
                                         ]) !!}
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         {!! Form::label('date_of_completion', __('Date of completion'), ['class' => 'form-label']) !!}
-                                        {{ Form::date('date_of_completion', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
+                                        {{ Form::date('dob', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
                                     </div>
 
 
 
                                     <div class="form-group col-md-12">
-                                        {!! Form::label('notes', __('Notes'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        {!! Form::label('experiance_Job_description', __('Experience Job Description'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
 
-                                        {!! Form::textarea('notes', old('notes'), [
+                                        {!! Form::textarea('experiance_Job_description', old('experiance_Job_description'), [
                                         'class' => 'form-control',
                                         'rows' => 2,
-                                        'placeholder' => 'Enter notes',
+                                        'placeholder' => 'Enter Experience job description',
                                     ]) !!}
                                     </div>
 
@@ -362,51 +361,6 @@
                             </div>
                         </div>
                     </div>
-
-                     {{-- //Dependenttables --}}
-                     <div class="col-md-6 ">
-                        <div class="card em-card">
-                            <div class="card-header">
-                                <h5>{{ __('Dependent') }}</h5>
-                            </div>
-                            <div class="card-body employee-detail-create-body">
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        {!! Form::label('dependent_name', __('Name'), ['class' => 'form-label']) !!}
-                                        {!! Form::text('dependent_name', old('dependent_name'), [
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Enter dependent name',
-                                        ]) !!}
-
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        {{ Form::label('dependent_relation', __('Relation Types *'), ['class' => 'form-label']) }}
-                                        <div class="form-icon-user">
-                                            <select name="dependent_relation" id="dependent_relation" class="form-control select2">
-                                                <option value="">-Select Relation</option>
-                                                <option value="Father">Father</option>
-                                                <option value="Mother">Mother</option>
-                                                <option value="Brother">Brother</option>
-                                                <option value="Sister">Sister</option>
-                                                <option value="Husband">Husband</option>
-                                                <option value="Wife">Wife</option>
-                                                <option value="Child">Child</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group col-md-12">
-                                        {!! Form::label('dependent_dob', __('Date of completion'), ['class' => 'form-label']) !!}
-                                        {{ Form::date('dependent_dob', null, ['class' => 'form-control current_date', 'required' => 'required', 'autocomplete' => 'off', 'placeholder' => 'Select Date of Birth']) }}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     {{-- // --}}
                     <div class="col-md-6 ">
                         <div class="card em-card">
@@ -517,6 +471,8 @@
                     new Choices('#choices-multiple', {
                         removeItemButton: true,
                     });
+
+
                 }
             });
         }

@@ -31,6 +31,27 @@ class Employee extends Model
         'tax_payer_id',
         'salary_type',
         'salary',
+        'marital_status',
+        'employe_status',
+        'employe_types',
+        'employee_experience',
+        'date_of_exit',
+        'Job_description',
+        'previous_company_name',
+        'previous_job_title',
+        'previous_from_date',
+        'previous_to_date'  ,
+        'previous_company_designation_id',
+        'experiance_Job_description'    ,
+
+        'institute_name'   ,
+        'education'   ,
+        'specialization'   ,
+        'date_of_completion',
+        'notes',
+        'dependent_name'  ,
+        'dependent_relation'  ,
+        'dependent_dob'  ,
         'created_by',
     ];
 
@@ -47,7 +68,7 @@ class Employee extends Model
     public function login_sts(){
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
- 
+
     public function get_net_salary()
     {
 
@@ -90,7 +111,7 @@ class Employee extends Model
             } else {
                 $total_loan = $loan->amount + $total_loan;
             }
-           
+
         }
 
         //Saturation Deduction
