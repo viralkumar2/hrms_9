@@ -37,6 +37,7 @@
                             <tr>
                                 <th>{{ __('Branch') }}</th>
                                 <th>{{ __('Department') }}</th>
+                                <th>{{ __('Status') }}</th>
                                 <th width="200px">{{ __('Action') }}</th>
                             </tr>
                         </thead>
@@ -45,6 +46,15 @@
                                 <tr>
                                     <td>{{ !empty($department->branch) ? $department->branch->name : '' }}</td>
                                     <td>{{ $department->name }}</td>
+
+                                    <td>
+
+                                        @if($department->status == 'Active')
+                                            <a href="{{ route('department_in_active',$department->id)}}" class="btn btn-success btn-sm"onclick="return confirm('Are you sure?')">Active</a>
+                                        @else
+                                            <a href="{{ route('department_active',$department->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">In-Active</a>
+                                        @endif
+                                    </td>
 
                                     <td class="Action">
                                         <span>
@@ -59,7 +69,7 @@
                                                     </a>
                                                 </div>
                                             @endcan
-                                        
+
 
                                             @can('Delete Department')
                                                 <div class="action-btn bg-danger ms-2">

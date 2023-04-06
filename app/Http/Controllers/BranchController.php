@@ -135,8 +135,10 @@ class BranchController extends Controller
                 if(count($employee) == 0)
                 {
                     $department = Department::where('branch_id',$branch->id)->first();
-                    Designation::where('department_id',$department->branch_id)->delete();
-                    $department->delete();
+                    if(!empty($department)){
+                        Designation::where('department_id',$department->branch_id)->delete();
+                        $department->delete();
+                    }
                     $branch->delete();
                 }
                 else

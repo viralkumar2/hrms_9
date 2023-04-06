@@ -27,7 +27,7 @@ class DesignationController extends Controller
     {
         if(\Auth::user()->can('Create Designation'))
         {
-            $departments = Department::where('created_by', '=', \Auth::user()->creatorId())->get();
+            $departments = Department::where('status','Active')->where('created_by', '=', \Auth::user()->creatorId())->get();
             $departments = $departments->pluck('name', 'id');
 
             return view('designation.create', compact('departments'));
@@ -59,6 +59,7 @@ class DesignationController extends Controller
             $designation                = new Designation();
             $designation->department_id = $request->department_id;
             $designation->name          = $request->name;
+            $designation->status       = $request->status;
             $designation->created_by    = \Auth::user()->creatorId();
 
             $designation->save();
@@ -120,6 +121,7 @@ class DesignationController extends Controller
                 }
                 $designation->name          = $request->name;
                 $designation->department_id = $request->department_id;
+                $designation->status       = $request->status;
                 $designation->save();
 
                 return redirect()->route('designation.index')->with('success', __('Designation  successfully updated.'));
@@ -155,4 +157,21 @@ class DesignationController extends Controller
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
+
+    public function designation_active($id){
+        $data = Designation::find($id);
+        $data->status = 'Active';
+        $data->save();
+        return redirect()->route('designation.index')->with('success', __('Designation status active successfully.'));
+    }
+
+    public function designation_in_active($id){
+
+        $data = Designation::find($id);
+        $data->status = 'In-Active';
+        $data->save();
+
+        return redirect()->route('designation.index')->with('success', __('Designation status in-active successfully.'));
+    }
+
 }

@@ -12,6 +12,7 @@ class DepartmentController extends Controller
 {
     public function index()
     {
+
         if(\Auth::user()->can('Manage Department'))
         {
             $departments = Department::where('created_by', '=', \Auth::user()->creatorId())->get();
@@ -40,6 +41,7 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
+
         if(\Auth::user()->can('Create Department'))
         {
 
@@ -59,6 +61,7 @@ class DepartmentController extends Controller
             $department             = new Department();
             $department->branch_id  = $request->branch_id;
             $department->name       = $request->name;
+            $department->status       = $request->status;
             $department->created_by = \Auth::user()->creatorId();
             $department->save();
 
@@ -117,6 +120,7 @@ class DepartmentController extends Controller
 
                 $department->branch_id = $request->branch_id;
                 $department->name      = $request->name;
+                $department->status       = $request->status;
                 $department->save();
 
                 return redirect()->route('department.index')->with('success', __('Department successfully updated.'));
@@ -160,5 +164,21 @@ class DepartmentController extends Controller
         {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
+    }
+
+    public function department_active($id){
+        $data = Department::find($id);
+        $data->status = 'Active';
+        $data->save();
+        return redirect()->route('department.index')->with('success', __('Department status active successfully.'));
+    }
+
+    public function department_in_active($id){
+
+        $data = Department::find($id);
+        $data->status = 'In-Active';
+        $data->save();
+
+        return redirect()->route('department.index')->with('success', __('Department status in-active successfully.'));
     }
 }

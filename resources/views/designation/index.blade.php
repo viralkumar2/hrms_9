@@ -36,6 +36,7 @@
                             <tr>
                                 <th>{{ __('Department') }}</th>
                                 <th>{{ __('Designation') }}</th>
+                                <th>{{ __('Status') }}</th>
                                 <th width="200px">{{ __('Action') }}</th>
                             </tr>
                         </thead>
@@ -47,6 +48,15 @@
                                 <tr>
                                     <td>{{ !empty($department->name) ? $department->name : '' }}</td>
                                     <td>{{ $designation->name }}</td>
+                                    <td>
+
+                                        @if($designation->status == 'Active')
+                                            <a href="{{ route('designation_in_active',$designation->id)}}" class="btn btn-success btn-sm"onclick="return confirm('Are you sure?')">Active</a>
+                                        @else
+                                            <a href="{{ route('designation_active',$designation->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">In-Active</a>
+                                        @endif
+                                    </td>
+
                                     <td class="Action">
                                         <span>
                                             @can('Edit Designation')

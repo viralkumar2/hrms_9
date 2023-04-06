@@ -26,6 +26,18 @@
             </div>
         </div>
 
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+                {{ Form::label('status', __('status'), ['class' => 'form-label']) }}
+                <div class="form-icon-user">
+                    <select name="status" id="status" class="form-control">
+                        <option value="Active">Active</option>
+                        <option value="In-Active">In-Active</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <div class="modal-footer">

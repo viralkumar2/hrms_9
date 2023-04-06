@@ -291,12 +291,23 @@ Route::group(['middleware' => ['verified']], function () {
             'XSS',
         ]
     );
+
+    //department active deactive
+    Route::get('department_active/{id}','DepartmentController@department_active')->name('department_active');
+    Route::get('department_in_active/{id}','DepartmentController@department_in_active')->name('department_in_active');
+
+
     Route::resource('designation', DesignationController::class)->middleware(
         [
             'auth',
             'XSS',
         ]
     );
+
+    //designation active deactive
+    Route::get('designation_active/{id}','DesignationController@designation_active')->name('designation_active');
+    Route::get('designation_in_active/{id}','DesignationController@designation_in_active')->name('designation_in_active');
+
     Route::resource('document', DocumentController::class)->middleware(
         [
             'auth',
@@ -304,6 +315,14 @@ Route::group(['middleware' => ['verified']], function () {
         ]
     );
     Route::resource('branch', BranchController::class)->middleware(
+        [
+            'auth',
+            'XSS',
+        ]
+    );
+
+    //LocationController
+    Route::resource('location', LocationController::class)->middleware(
         [
             'auth',
             'XSS',

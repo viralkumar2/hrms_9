@@ -165,20 +165,20 @@
     // $is_sidebar_transperent = isset($settings['is_sidebar_transperent']) ? $settings['is_sidebar_transperent'] : '';
     // $dark_mode = isset($settings['dark_mode']) ? $settings['dark_mode'] : '';
     $setting = \App\Models\Utility::settings();
-    
+
     $SITE_RTL = $settings['SITE_RTL'];
     if ($SITE_RTL == '') {
         $SITE_RTL == 'off';
     }
     $file_type = config('files_types');
     $setting = \App\Models\Utility::settings();
-    
+
     $local_storage_validation = $setting['local_storage_validation'];
     $local_storage_validations = explode(',', $local_storage_validation);
-    
+
     $s3_storage_validation = $setting['s3_storage_validation'];
     $s3_storage_validations = explode(',', $s3_storage_validation);
-    
+
     $wasabi_storage_validation = $setting['wasabi_storage_validation'];
     $wasabi_storage_validations = explode(',', $wasabi_storage_validation);
 @endphp
