@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\DB;
 use Artisan;
 use App\Models\EmailTemplate;
 use App\Models\GenerateOfferLetter;
+use App\Models\IncrementLetter;
+use App\Models\RelievingLetter;
+
 use App\Models\JoiningLetter;
 use App\Models\ExperienceCertificate;
 use App\Models\NOC;
@@ -71,6 +74,8 @@ class SettingsController extends Controller
                 $Offerletter = GenerateOfferLetter::all();
                 $currOfferletterLang = GenerateOfferLetter::where('created_by',  \Auth::user()->id)->where('lang', $offerlang)->first();
 
+
+
                 //joining letter
                 $Joiningletter = JoiningLetter::all();
                 $currjoiningletterLang = JoiningLetter::where('created_by',  \Auth::user()->id)->where('lang', $joininglang)->first();
@@ -84,8 +89,15 @@ class SettingsController extends Controller
                 $currnocLang = NOC::where('created_by',  \Auth::user()->id)->where('lang', $noclang)->first();
 
 
+                //IncrementLetter letter
+                $IncrementLetter = IncrementLetter::all();
+                $IncrementLetterLang = IncrementLetter::where('created_by',  \Auth::user()->id)->where('lang', $offerlang)->first();
 
-                return view('setting.company_settings', compact('settings', 'timezones', 'ips', 'EmailTemplates', 'currOfferletterLang', 'Offerletter', 'offerlang', 'Joiningletter', 'currjoiningletterLang', 'joininglang', 'experience_certificate', 'curr_exp_cetificate_Lang', 'explang', 'noc_certificate', 'currnocLang', 'noclang'));
+                //RelievingLetter letter
+                $RelievingLetter = RelievingLetter::all();
+                $RelievingLetterLang = RelievingLetter::where('created_by',  \Auth::user()->id)->where('lang', $offerlang)->first();
+
+                return view('setting.company_settings', compact('RelievingLetter','RelievingLetterLang','settings', 'timezones', 'ips', 'EmailTemplates', 'currOfferletterLang', 'Offerletter', 'offerlang', 'Joiningletter', 'currjoiningletterLang', 'joininglang', 'experience_certificate', 'curr_exp_cetificate_Lang', 'explang', 'noc_certificate', 'currnocLang', 'noclang','IncrementLetterLang','IncrementLetter'));
             }
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
@@ -574,7 +586,7 @@ class SettingsController extends Controller
     public function saveBusinessSettings(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
         if (\Auth::user()->type == 'company' || \Auth::user()->type == 'super admin') {
 
 
@@ -1172,11 +1184,26 @@ class SettingsController extends Controller
     }
     public function offerletterupdate($lang, Request $request)
     {
-
         $user = GenerateOfferLetter::updateOrCreate(['lang' =>   $lang, 'created_by' =>  \Auth::user()->id], ['content' => $request->content]);
-
         return redirect()->back()->with('success', __('Offer Letter successfully saved.'));
     }
+    //incrementlatterupdate
+    public function incrementlatterupdate($lang, Request $request)
+    {
+
+        $user = IncrementLetter::updateOrCreate(['lang' =>   $lang, 'created_by' =>  \Auth::user()->id], ['content' => $request->content]);
+        return redirect()->back()->with('success', __('Increment Letter successfully saved.'));
+    }
+
+    //relievingtlatterupdate
+    public function relievingtlatterupdate($lang, Request $request)
+    {
+
+        $user = RelievingLetter::updateOrCreate(['lang' =>   $lang, 'created_by' =>  \Auth::user()->id], ['content' => $request->content]);
+        return redirect()->back()->with('success', __('Relieving Letter successfully saved.'));
+    }
+
+
     public function joiningletterupdate($lang, Request $request)
     {
 

@@ -46,15 +46,6 @@ class Utility extends Model
             "company_country" => "",
             "company_telephone" => "",
             "company_email" => "",
-
-            "company_phone_numbar" => "",
-            "company_gstin_numbar" => "",
-            "company_esic_numbar" => "",
-            "company_pf_numbar" => "",
-            "company_tan_numbar" => "",
-            "company_pec_numbar" => "",
-
-
             "company_email_from_name" => "",
             "employee_prefix" => "#EMP00",
             "footer_title" => "",

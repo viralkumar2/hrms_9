@@ -965,7 +965,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('active_user/{id}', [UserController::class, 'active_user'])->name('active_user');
     Route::get('inactive_role/{id}', [RoleController::class, 'inactive_role'])->name('inactive_role');
     Route::get('active_role/{id}', [RoleController::class, 'active_role'])->name('active_role');
-    
+
     Route::resource('coupons', CouponController::class)->middleware(
         [
             'auth',
@@ -1479,6 +1479,12 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('setting/offerlatter', [SettingsController::class, 'index'])->name('get.offerlatter.language');
     Route::get('job-onboard/pdf/{id}', [JobApplicationController::class, 'offerletterPdf'])->name('offerlatter.download.pdf');
     Route::get('job-onboard/doc/{id}', [JobApplicationController::class, 'offerletterDoc'])->name('offerlatter.download.doc');
+
+    //Incrementlatter
+    Route::post('setting/incrementlatter/{lang?}', [SettingsController::class, 'incrementlatterupdate'])->name('incrementlatter.update');
+
+    // relieving
+    Route::post('setting/relievingtlatter/{lang?}', [SettingsController::class, 'relievingtlatterupdate'])->name('relievingtlatter.update');
 
     //joining Letter
     Route::post('setting/joiningletter/{lang?}', [SettingsController::class, 'joiningletterupdate'])->name('joiningletter.update');
