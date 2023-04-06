@@ -94,6 +94,7 @@
                                 <th>{{ __('Start Date') }}</th>
                                 <th>{{ __('End Date') }}</th>
                                 @if (Gate::check('Edit Holiday') || Gate::check('Delete Holiday'))
+                                    <th>Status</th>
                                     <th width="200px">{{ __('Action') }}</th>
                                 @endif
                             </tr>
@@ -105,6 +106,24 @@
                                     <td>{{ \Auth::user()->dateFormat($holiday->start_date) }}</td>
                                     <td>{{ \Auth::user()->dateFormat($holiday->end_date) }}</td>    
                                     @if (Gate::check('Edit Holiday') || Gate::check('Delete Holiday'))
+                                    
+                                    @can('Delete Holiday')
+                                    <td>
+                                        @if($holiday->status == 1)
+                                            <div class="action-btn bg-success ms-2">
+                                                {!! Form::open(['method' => 'get', 'route' => ['inactive_holiday', $holiday->id], 'id' => 'delete-form-' . $holiday->id]) !!}
+                                                <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="InActive" data-bs-original-title="InActive"aria-label="InActive"><i class="ti ti-check text-white text-white"></i></a>
+                                                </form>
+                                            </div>
+                                        @else
+                                            <div class="action-btn bg-danger ms-2">
+                                                {!! Form::open(['method' => 'get', 'route' => ['active_holiday', $holiday->id], 'id' => 'delete-form-' . $holiday->id]) !!}
+                                                <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="Active" data-bs-original-title="Active"aria-label="Active"><i class="ti ti-minus text-white text-white"></i></a>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    </td>
+                                    @endcan
                                         <td class="Action">
                                             <span>
                                                 @can('Edit Holiday')

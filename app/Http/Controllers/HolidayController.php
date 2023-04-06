@@ -172,16 +172,18 @@ class HolidayController extends Controller
 
     public function calender(Request $request)
     {
+        // return 'sdf';
         if (\Auth::user()->can('Manage Holiday')) {
-            $holidays = LocalHoliday::where('created_by', '=', \Auth::user()->creatorId());
+            $holidays = LocalHoliday::where('status',1)->where('created_by', '=', \Auth::user()->creatorId());
+            
             $today_date = date('m');
             // $current_month_event = Holiday::select( 'occasion','start_date','end_date', 'created_at')->whereRaw('MONTH(start_date)=' . $today_date,'MONTH(end_date)=' . $today_date)->get();
-            $current_month_event = LocalHoliday::select('occasion', 'start_date', 'end_date', 'created_at')->whereNotNull(['start_date', 'end_date'])->whereMonth('start_date', $today_date)->whereMonth('end_date', $today_date)->get();
+            $current_month_event = LocalHoliday::select('occasion', 'start_date', 'end_date', 'created_at','status')->where('status',1)->whereNotNull(['start_date', 'end_date'])->whereMonth('start_date', $today_date)->whereMonth('end_date', $today_date)->where('created_by', '=', \Auth::user()->creatorId())->get();
             if (!empty($request->start_date)) {
-                $holidays->where('start_date', '>=', $request->start_date);
+                $holidays->where('start_date', '>=', $request->start_date)->where('status',1);
             }
             if (!empty($request->end_date)) {
-                $holidays->where('end_date', '<=', $request->end_date);
+                $holidays->where('end_date', '<=', $request->end_date)->where('status',1);
             }
             $holidays = $holidays->get();
 
@@ -198,6 +200,7 @@ class HolidayController extends Controller
                 $arrHolidays[]    = $arr;
             }
             // $arrHolidays = str_replace('"[', '[', str_replace(']"', ']', json_encode($arrHolidays)));
+            // return $current_month_event;
             $arrHolidays =  json_encode($arrHolidays);
 
 
@@ -281,7 +284,7 @@ class HolidayController extends Controller
         }
         else
         {
-            $data =LocalHoliday::get();
+            $data =LocalHoliday::where('status',1)->where('created_by', '=', \Auth::user()->creatorId())->get();
             
             
             foreach($data as $val)
@@ -307,6 +310,16 @@ class HolidayController extends Controller
         }
         
         return $arrayJson;
+    }
+    //  by disma 
+    public function active_holiday($id){
+        LocalHoliday::where('id',$id)->update(array('status'=>1));
+        return redirect()->back()->with('success','Holiday Actived successfully.');
+    }
+
+    public function inactive_holiday($id){
+        LocalHoliday::where('id',$id)->update(array('status'=>0));
+        return redirect()->back()->with('success','Holiday Inactived successfully.');
     }
 
 }

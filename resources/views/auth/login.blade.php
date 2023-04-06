@@ -34,6 +34,11 @@
                 <div class="card-body">
                     <div class="">
                         <h2 class="mb-3 f-w-600">{{ __('Login') }}</h2>
+                        @if(session()->has('message'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
                     </div>
                     <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate=""
                         id="form_data">
