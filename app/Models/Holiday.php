@@ -10,5 +10,6 @@ class Holiday extends Model
         'date',
         'occasion',
         'created_by',
+        'status',
     ];
 }

@@ -158,10 +158,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar/');
                             <h6 class="mb-0">
                                 <div class="badge p-2 px-3 rounded bg-primary">{{ ucfirst($user->type) }}</div>
                                     @if ($user->login_status == 0)
-                                    <div class="badge  rounded bg-danger"><a href="{{route('active_user',$user->id)}}" class=" text-white text-white">In-Active</a> </div>
+                                    <div class="badge  rounded bg-danger"><a href="{{route('active_user',$user->id)}}"  onclick="return confirm('Are you sure?')" class=" text-white text-white">In-Active</a> </div>
                                         
                                     @else
-                                    <div class="badge rounded bg-success"> <a href="{{route('inactive_user',$user->id)}}" class=" text-white text-white">Active</a> </div>
+                                    <div class="badge rounded bg-success"> <a href="{{route('inactive_user',$user->id)}}" onclick="return confirm('Are you sure?')"  class=" text-white text-white">Active</a> </div>
                                     
                                     @endif
 

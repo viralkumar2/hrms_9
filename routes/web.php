@@ -2,6 +2,7 @@
 
 use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
+use App\Http\controllers\ShiftController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\HomeController;
@@ -1415,6 +1416,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('import/holidays/file', [HolidayController::class, 'importFile'])->name('holidays.file.import');
     Route::post('import/holidays', [HolidayController::class, 'import'])->name('holidays.import');
 
+
     //Asset Import & Export
     Route::get('export/assets', [AssetController::class, 'export'])->name('assets.export');
     Route::get('import/assets/file', [AssetController::class, 'importFile'])->name('assets.file.import');
@@ -1503,4 +1505,14 @@ Route::group(['middleware' => ['verified']], function () {
 
     //storage Setting
     Route::post('storage-settings', [SettingsController::class, 'storageSettingStore'])->name('storage.setting.store')->middleware(['auth', 'XSS']);
+
+    // Route by disma 
+
+
+    Route::get('active_holiday/{id}', [HolidayController::class, 'active_holiday'])->name('active_holiday');
+    Route::get('inactive_holiday/{id}', [HolidayController::class, 'inactive_holiday'])->name('inactive_holiday');
+
+    Route::post('shift/store',[ShiftController::class, 'store'])->name('shift.store');
+    Route::get('shift/create',[ShiftController::class, 'create'])->name('shift.create');
+    Route::get('shift',[ShiftController::class, 'index'])->name('shift.index');
 });

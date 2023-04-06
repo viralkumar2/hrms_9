@@ -23,7 +23,7 @@ class Isactive
             if(Auth::user()->login_status == 0)
             {
                 auth()->logout();
-                return redirect()->route('login');
+                return redirect()->route('login')->with('message','Your account is blocked. please,contact to admin');
             }
         }
         
