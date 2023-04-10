@@ -91,6 +91,7 @@
                         <thead>
                             <tr>
                             <th>{{ __('Occasion') }}</th>
+                            <th>{{ __('Branch') }}</th>
                                 <th>{{ __('Start Date') }}</th>
                                 <th>{{ __('End Date') }}</th>
                                 @if (Gate::check('Edit Holiday') || Gate::check('Delete Holiday'))
@@ -103,10 +104,17 @@
                             @foreach ($holidays as $holiday)
                                 <tr>
                                 <td>{{ $holiday->occasion }}</td>
-                                    <td>{{ \Auth::user()->dateFormat($holiday->start_date) }}</td>
-                                    <td>{{ \Auth::user()->dateFormat($holiday->end_date) }}</td>    
+                                <td>
+                                    <?php $branch = DB::table('branches')->where('id',$holiday->branch_name)->first();  ?>
+
+                                    @if($branch)
+                                    {{$branch->name }}
+                                    @endif
+                                </td>
+                                <td>{{ \Auth::user()->dateFormat($holiday->start_date) }}</td>
+                                <td>{{ \Auth::user()->dateFormat($holiday->end_date) }}</td>
                                     @if (Gate::check('Edit Holiday') || Gate::check('Delete Holiday'))
-                                    
+
                                     @can('Delete Holiday')
                                     <td>
                                         @if($holiday->status == 1)

@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('page-title'); ?>
     <?php echo e(__('Login')); ?>
 
@@ -35,6 +36,12 @@
                 <div class="card-body">
                     <div class="">
                         <h2 class="mb-3 f-w-600"><?php echo e(__('Login')); ?></h2>
+                        <?php if(session()->has('message')): ?>
+                            <div class="alert alert-danger">
+                                <?php echo e(session()->get('message')); ?>
+
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <form method="POST" action="<?php echo e(route('login')); ?>" class="needs-validation" novalidate=""
                         id="form_data">

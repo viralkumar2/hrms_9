@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        {{ Form::label('marital_status', __('Select Marital*'), ['class' => 'form-label']) }}
+                                        {{ Form::label('marital_status', __('Select Marital'), ['class' => 'form-label']) }}
                                         <div class="form-icon-user">
                                             <select name="marital_status" id="marital_status" class="form-control select2">
                                                 <option value="">-Select Marital-</option>
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('address', __('Address'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::label('address', __('Address'), ['class' => 'form-label']) !!}<span class="text-danger pl-1"></span>
                                     {!! Form::textarea('address', old('address'), [
                                         'class' => 'form-control',
                                         'rows' => 2,
@@ -151,7 +151,7 @@
                                     <div class="form-group col-md-6">
                                         {{ Form::label('branch_id', __('Employee Status *'), ['class' => 'form-label']) }}
                                         <div class="form-icon-user">
-                                            <select name="employe_status" id="employe_status" class="form-control select2">
+                                            <select name="employe_status" id="employe_status" class="form-control select2" required>
                                                 <option value="">-Select Employee Status-</option>
                                                 <option value="Active">Active</option>
                                                 <option value="Terminated">Terminated</option>
@@ -164,7 +164,7 @@
                                     <div class="form-group col-md-6">
                                         {{ Form::label('employe_types', __('Employee Types *'), ['class' => 'form-label']) }}
                                         <div class="form-icon-user">
-                                            <select name="employe_types" id="employe_types" class="form-control select2">
+                                            <select name="employe_types" id="employe_types" class="form-control select2" required>
                                                 <option value="">-Select Employee Status-</option>
                                                 <option value="Permanent">Permanent</option>
                                                 <option value="Temporary">Temporary</option>
@@ -176,18 +176,18 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('Experience', __('Experience'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        {!! Form::label('Experience', __('Experience'), ['class' => 'form-label']) !!}<span class="text-danger pl-1"></span>
                                         {!! Form::text('employee_experience', old('employee_experience'), ['class' => 'form-control', 'placeholder' => 'Enter Experience']) !!}
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('date_of_exit', __('Date on Exit'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        {!! Form::label('date_of_exit', __('Date on Exit'), ['class' => 'form-label']) !!}<span class="text-danger pl-1"></span>
                                         {!! Form::text('date_of_exit', old('date_of_exit'), ['class' => 'form-control', 'placeholder' => 'Enter Experience']) !!}
                                     </div>
 
 
                                     <div class="form-group col-md-12">
-                                        {!! Form::label('Job_description', __('Job Description'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        {!! Form::label('Job_description', __('Job Description'), ['class' => 'form-label']) !!}<span class="text-danger pl-1"></span>
 
                                         {!! Form::textarea('Job_description', old('Job_description'), [
                                         'class' => 'form-control',
@@ -288,12 +288,12 @@
                                     <div class="form-group col-md-12">
                                         {{ Form::label('previous_company_designation_id', __('Select Designation'), ['class' => 'form-label']) }}
                                         <div class="form-icon-user">
-                                            {{ Form::select('previous_company_designation_id', $designations, null, ['class' => 'form-control select2', 'id' => 'previous_company_designation_id', 'required' => 'required', 'placeholder' => 'Select Designation']) }}
+                                            {{ Form::select('previous_company_designation_id', $designations, null, ['class' => 'form-control select2', 'id' => 'previous_company_designation_id','placeholder' => 'Select Designation']) }}
                                         </div>
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        {!! Form::label('experiance_Job_description', __('Experience Job Description'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        {!! Form::label('experiance_Job_description', __('Experience Job Description'), ['class' => 'form-label']) !!}<span class="text-danger pl-1"></span>
 
                                         {!! Form::textarea('experiance_Job_description', old('experiance_Job_description'), [
                                         'class' => 'form-control',
@@ -380,7 +380,7 @@
 
                                     </div>
                                     <div class="form-group col-md-12">
-                                        {{ Form::label('dependent_relation', __('Relation Types *'), ['class' => 'form-label']) }}
+                                        {{ Form::label('dependent_relation', __('Relation Types'), ['class' => 'form-label']) }}
                                         <div class="form-icon-user">
                                             <select name="dependent_relation" id="dependent_relation" class="form-control select2">
                                                 <option value="">-Select Relation</option>

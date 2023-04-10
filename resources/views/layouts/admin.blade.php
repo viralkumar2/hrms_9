@@ -71,9 +71,9 @@ $color = (!empty($setting['theme_color'])) ? $setting['theme_color'] : 'theme-3'
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link">
     @endif
 
-    
 
-    
+
+
     @stack('css-page')
 </head>
 
@@ -176,7 +176,7 @@ $color = (!empty($setting['theme_color'])) ? $setting['theme_color'] : 'theme-3'
                             </ul>
                         </div>
                         <div class="col-sm-auto col-md">
-                            <div class="float-end " @if ($SITE_RTL == 'on')style=" float: left !important;"@endif> 
+                            <div class="float-end " @if ($SITE_RTL == 'on')style=" float: left !important;"@endif>
                                 @yield('action-button')
 
 
@@ -232,7 +232,7 @@ $color = (!empty($setting['theme_color'])) ? $setting['theme_color'] : 'theme-3'
     <!-- Warning Section start -->
     <!-- Older IE warning message -->
     <!--[if lt IE 11]>
- 
+
 <![endif]-->
     <!-- Warning Section Ends -->
     <!-- Required Js -->
@@ -270,12 +270,16 @@ $color = (!empty($setting['theme_color'])) ? $setting['theme_color'] : 'theme-3'
 
 
     <script>
+
+
+
+
         $(document).on('click', '.local_calender .fc-daygrid-event', function(e) {
             // if (!$(this).hasClass('project')) {
             e.preventDefault();
             var event = $(this);
             var title = $(this).find('.fc-event-title').html();
-            
+
             var size = 'md';
             var url = $(this).attr('href');
             $("#commonModal .modal-title ").html(title);
@@ -380,7 +384,7 @@ $color = (!empty($setting['theme_color'])) ? $setting['theme_color'] : 'theme-3'
                 // Pusher Message
                 var msgChannel = pusher.subscribe('my-channel');
                 msgChannel.bind('my-chat', function(data) {
-                    
+
                     if (id == data.to) {
                         getChat();
                     }
@@ -388,11 +392,11 @@ $color = (!empty($setting['theme_color'])) ? $setting['theme_color'] : 'theme-3'
             }
 
             // Get chat for top ox
-           
 
-           
 
-           
+
+
+
         </script>
     @endif
 

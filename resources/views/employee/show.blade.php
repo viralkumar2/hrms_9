@@ -251,7 +251,7 @@
 
                 <div class="card ">
                 <div class="card-body employee-detail-body fulls-card emp-card">
-                <h5>{{__('Work Experience-TABLE')}}</h5>
+                <h5>{{__('Work Experience')}}</h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
@@ -304,7 +304,7 @@
 
                 <div class="card ">
                 <div class="card-body employee-detail-body fulls-card emp-card">
-                <h5>{{__('Education-TABLE')}}</h5>
+                <h5>{{__('Education')}}</h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">

@@ -1,18 +1,18 @@
 @extends('layouts.admin')
 
 @section('page-title')
-   {{ __("Manage Branch") }}
+   {{ __("Billing Addres") }}
 @endsection
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __("Home") }}</a></li>
-    <li class="breadcrumb-item">{{ __("Branch") }}</li>
+    <li class="breadcrumb-item">{{ __("Billing Addres") }}</li>
 @endsection
 
 @section('action-button')
     @can('Create Branch')
-        <a href="#" data-url="{{ route('branch.create') }}" data-ajax-popup="true"
-            data-title="{{ __('Create New Branch') }}" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary"
+        <a href="#" data-url="{{ route('billing_addres.create') }}" data-ajax-popup="true"
+            data-title="{{ __('Create New billing address') }}" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary"
             data-bs-original-title="{{ __('Create') }}">
             <i class="ti ti-plus"></i>
         </a>
@@ -33,12 +33,6 @@
                             <thead>
                             <tr>
                                 <th>{{__('Branch')}}</th>
-                                <th>{{__('Country')}}</th>
-                                <th>{{__('State')}}</th>
-                                <th>{{__('District')}}</th>
-                                <th>{{__('City')}}</th>
-                                <th>{{__('Zip Code')}}</th>
-                                <th>{{__('Address')}}</th>
                                 <th width="200px">{{__('Action')}}</th>
                             </tr>
                             </thead>
@@ -46,12 +40,6 @@
                             @foreach ($branches as $branch)
                                 <tr>
                                     <td>{{ $branch->name }}</td>
-                                    <td>{{ $branch->country_name }}</td>
-                                    <td>{{ $branch->state_name }}</td>
-                                    <td>{{ $branch->district_name }}</td>
-                                    <td>{{ $branch->city_name }}</td>
-                                    <td>{{ $branch->zip_code }}</td>
-                                    <td>{{ $branch->address }}</td>
                                     <td class="Action">
                                         <span>
                                             @can('Edit Branch')
@@ -87,6 +75,4 @@
             </div>
         </div>
 </div>
-
-
 @endsection

@@ -1,11 +1,11 @@
 <div class="card sticky-top" style="top:30px">
     <div class="list-group list-group-flush" id="useradd-sidenav">
         <a href="{{route('branch.index')}}" class="list-group-item list-group-item-action border-0 {{ (request()->is('branch*') ? 'active' : '')}}">{{__('Branch')}} <div class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+        {{-- <a href="{{ route('billing_addres.index') }}" class="list-group-item list-group-item-action border-0 {{ (request()->is('billing_addres*') ? 'active' : '')}}">{{__('Billing Address')}}<div class="float-end"><i class="ti ti-chevron-right"></i></div></a> --}}
 
         <a href="{{ route('department.index') }}" class="list-group-item list-group-item-action border-0 {{ (request()->is('department*') ? 'active' : '')}}">{{__('Department')}}<div class="float-end"><i class="ti ti-chevron-right"></i></div></a>
 
         <a href="{{ route('designation.index') }}" class="list-group-item list-group-item-action border-0 {{ (request()->is('designation*') ? 'active' : '')}}">{{__('Designation')}}<div class="float-end"><i class="ti ti-chevron-right"></i></div></a>
-        {{-- <a href="{{ route('location.index') }}" class="list-group-item list-group-item-action border-0 {{ (request()->is('location*') ? 'active' : '')}}">{{__('Location')}}<div class="float-end"><i class="ti ti-chevron-right"></i></div></a> --}}
 
         <a href="{{ route('leavetype.index') }}" class="list-group-item list-group-item-action border-0 {{ (Request::route()->getName() == 'leavetype.index' ? 'active' : '')}}">{{__('Leave Type')}}<div class="float-end"><i class="ti ti-chevron-right"></i></div></a>
 

@@ -7,6 +7,9 @@ use App\Imports\HolidayImport;
 use App\Models\Holiday as LocalHoliday;
 use Illuminate\Http\Request;
 use App\Models\Utility;
+use App\Models\Branch;
+use App\Models\Employee;
+
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\GoogleCalendar\Event as GoogleEvent;
@@ -17,16 +20,20 @@ class HolidayController extends Controller
     public function index(Request $request)
     {
         if (\Auth::user()->can('Manage Holiday')) {
-            $holidays = LocalHoliday::where('created_by', '=', \Auth::user()->creatorId());
-
+            if(\Auth::user()->can('Delete Holiday')){
+                $holidays = LocalHoliday::where('created_by', '=', \Auth::user()->creatorId());
+                $holidays = $holidays->get();
+            }else{
+                $holidays = LocalHoliday::where('status',1)->where('created_by', '=', \Auth::user()->creatorId());
+                $employees = Employee::where('user_id',Auth::id())->where('created_by', '=', \Auth::user()->creatorId())->first();
+                $holidays = $holidays->where('branch_name',$employees->branch_id)->get();
+            }
             if (!empty($request->start_date)) {
                 $holidays->where('start_date', '>=', $request->start_date);
             }
             if (!empty($request->end_date)) {
                 $holidays->where('end_date', '<=', $request->end_date);
             }
-            $holidays = $holidays->get();
-
             return view('holiday.index', compact('holidays'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
@@ -37,7 +44,8 @@ class HolidayController extends Controller
     public function create()
     {
         if (\Auth::user()->can('Create Holiday')) {
-            return view('holiday.create');
+            $branches = Branch::where('created_by', '=', \Auth::user()->creatorId())->get();
+            return view('holiday.create',compact('branches'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
@@ -46,6 +54,7 @@ class HolidayController extends Controller
 
     public function store(Request $request)
     {
+
         if (\Auth::user()->can('Create Holiday')) {
             $validator = \Validator::make(
                 $request->all(),
@@ -64,6 +73,7 @@ class HolidayController extends Controller
 
             $holiday             = new LocalHoliday();
             $holiday->occasion          = $request->occasion;
+            $holiday->branch_name          = $request->branch_name;
             $holiday->start_date        = $request->start_date;
             $holiday->end_date          = $request->end_date;
             $holiday->created_by = \Auth::user()->creatorId();
@@ -109,14 +119,15 @@ class HolidayController extends Controller
     {
         $holidays = LocalHoliday::where('id',$id)->first();
         return view('holiday.show', compact('holidays'));
-        
+
     }
 
 
     public function edit(LocalHoliday $holiday)
     {
         if (\Auth::user()->can('Edit Holiday')) {
-            return view('holiday.edit', compact('holiday'));
+            $branches = Branch::where('created_by', '=', \Auth::user()->creatorId())->get();
+            return view('holiday.edit', compact('holiday','branches'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
@@ -142,6 +153,7 @@ class HolidayController extends Controller
             }
 
             $holiday->occasion          = $request->occasion;
+            $holiday->branch_name          = $request->branch_name;
             $holiday->start_date        = $request->start_date;
             $holiday->end_date          = $request->end_date;
             $holiday->save();
@@ -175,7 +187,7 @@ class HolidayController extends Controller
         // return 'sdf';
         if (\Auth::user()->can('Manage Holiday')) {
             $holidays = LocalHoliday::where('status',1)->where('created_by', '=', \Auth::user()->creatorId());
-            
+
             $today_date = date('m');
             // $current_month_event = Holiday::select( 'occasion','start_date','end_date', 'created_at')->whereRaw('MONTH(start_date)=' . $today_date,'MONTH(end_date)=' . $today_date)->get();
             $current_month_event = LocalHoliday::select('occasion', 'start_date', 'end_date', 'created_at','status')->where('status',1)->whereNotNull(['start_date', 'end_date'])->whereMonth('start_date', $today_date)->whereMonth('end_date', $today_date)->where('created_by', '=', \Auth::user()->creatorId())->get();
@@ -285,8 +297,8 @@ class HolidayController extends Controller
         else
         {
             $data =LocalHoliday::where('status',1)->where('created_by', '=', \Auth::user()->creatorId())->get();
-            
-            
+
+
             foreach($data as $val)
             {
                 if (Auth::user()->type == 'employee') {
@@ -308,10 +320,10 @@ class HolidayController extends Controller
                 ];
             }
         }
-        
+
         return $arrayJson;
     }
-    //  by disma 
+    //  by disma
     public function active_holiday($id){
         LocalHoliday::where('id',$id)->update(array('status'=>1));
         return redirect()->back()->with('success','Holiday Actived successfully.');

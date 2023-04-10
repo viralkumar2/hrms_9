@@ -11,19 +11,23 @@
     <div class="col-xxl-6">
 
         <div class="row">
+
             <div class="col-lg-4 col-6">
-                <div class="card" style="height: 226px">
-                    <div class="card-body">
-                        <div class="theme-avtar bg-primary">
-                            <i class="ti ti-users"></i>
+                <a href="{{ route('user.index')}}">
+                    <div class="card" style="height: 226px">
+                        <div class="card-body">
+                            <div class="theme-avtar bg-primary">
+                                <i class="ti ti-users"></i>
+                            </div>
+                            <p class="text-muted text-sm mt-4 mb-2">{{ __('Total Users') }} : {{$user->total_user}}</p>
+                            <h6 class="mb-3">{{ __('Paid Users') }}</h6>
+                            <h3 class="mb-0">{{$user['total_paid_user'] }}</h3>
                         </div>
-                        <p class="text-muted text-sm mt-4 mb-2">{{ __('Total Users') }} : {{$user->total_user}}</p>
-                        <h6 class="mb-3">{{ __('Paid Users') }}</h6>
-                        <h3 class="mb-0">{{$user['total_paid_user'] }}</h3>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-lg-4 col-6">
+                <a href="{{ route('order.index')}}">
                 <div class="card" style="height: 226px">
                     <div class="card-body">
                         <div class="theme-avtar bg-info">
@@ -34,8 +38,10 @@
                         <h3 class="mb-0">{{ (!empty(env('CURRENCY_SYMBOL')) ? env('CURRENCY_SYMBOL') : '$') . $user['total_orders_price'] }}</h3>
                     </div>
                 </div>
+            </a>
             </div>
             <div class="col-lg-4 col-6">
+                <a href="{{ route('plans.index')}}">
                 <div class="card" style="height: 226px">
                     <div class="card-body">
                         <div class="theme-avtar bg-warning">
@@ -46,6 +52,7 @@
                         <h3 class="mb-0">{{ $user['most_purchese_plan'] }}</h3>
                     </div>
                 </div>
+            </a>
             </div>
 
         </div>

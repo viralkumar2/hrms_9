@@ -6,10 +6,20 @@ use App\Models\Branch;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Employee;
+use DB;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
 {
+
+    public function getcities($id){
+        $cities = DB::table('city')->where('districtid',$id)->get();
+        return $cities;
+    }
+    public function getdistict($id){
+        $getdistict = DB::table('district')->where('state_id',$id)->get();
+        return $getdistict;
+    }
     public function index()
     {
         if(\Auth::user()->can('Manage Branch'))
@@ -28,7 +38,8 @@ class BranchController extends Controller
     {
         if(\Auth::user()->can('Create Branch'))
         {
-            return view('branch.create');
+            $state = DB::table('state')->get();
+            return view('branch.create',compact('state'));
         }
         else
         {
@@ -38,6 +49,7 @@ class BranchController extends Controller
 
     public function store(Request $request)
     {
+
         if(\Auth::user()->can('Create Branch'))
         {
 
@@ -53,8 +65,20 @@ class BranchController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
+            $state = DB::table('state')->where('state_id',$request->state_name)->first();
+            $district_name = DB::table('district')->where('districtid',$request->district_name)->first();
+
+
             $branch             = new Branch();
             $branch->name       = $request->name;
+            //country
+            $branch->country_name  = $request->country_name;
+            $branch->state_name    = $state->state_title;
+            $branch->district_name = $district_name->district_title;
+            $branch->city_name    = $request->city_name;
+            $branch->zip_code    = $request->zip_code;
+            $branch->address    = $request->address;
+
             $branch->created_by = \Auth::user()->creatorId();
             $branch->save();
 
@@ -77,8 +101,8 @@ class BranchController extends Controller
         {
             if($branch->created_by == \Auth::user()->creatorId())
             {
-
-                return view('branch.edit', compact('branch'));
+                $state = DB::table('state')->get();
+                return view('branch.edit', compact('branch','state'));
             }
             else
             {
@@ -108,8 +132,16 @@ class BranchController extends Controller
 
                     return redirect()->back()->with('error', $messages->first());
                 }
+                $state = DB::table('state')->where('state_id',$request->state_name)->first();
+                $district_name = DB::table('district')->where('districtid',$request->district_name)->first();
 
                 $branch->name = $request->name;
+                $branch->country_name  = $request->country_name;
+                $branch->state_name    = $state->state_title;
+                $branch->district_name = $district_name->district_title;
+                $branch->city_name    = $request->city_name;
+                $branch->zip_code    = $request->zip_code;
+                $branch->address    = $request->address;
                 $branch->save();
 
                 return redirect()->route('branch.index')->with('success', __('Branch successfully updated.'));

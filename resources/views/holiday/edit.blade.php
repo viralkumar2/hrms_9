@@ -1,6 +1,17 @@
 {{ Form::model($holiday, ['route' => ['holiday.update', $holiday->id], 'method' => 'PUT']) }}
 <div class="modal-body">
     <div class="row">
+
+        <div class="form-group col-md-12">
+            {{ Form::label('Branch', __('Branch'), ['class' => 'col-form-label']) }}
+            <select name="branch_name" id="branch_name" class="form-control" required>
+                <option value="">Select a branch</option>
+                @foreach($branches as $row)
+                    <option @if($holiday->branch_name == $row->id ) selected @else @endif value="{{ $row->id }}">{{ $row->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="form-group">
             {{ Form::label('occasion', __('Occasion'), ['class' => 'col-form-label']) }}
             {{ Form::text('occasion', null, ['class' => 'form-control','placeholder'=>'Enter Occasion']) }}

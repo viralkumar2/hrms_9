@@ -109,7 +109,7 @@
                                                         </div>
                                                     @endcan
 
-                                                    <!-- @can('Delete Employee')
+                                                    @can('Delete Employee')
                                                         <div class="action-btn bg-danger ms-2">
                                                             {!! Form::open(['method' => 'DELETE', 'route' => ['employee.destroy', $employee->id], 'id' => 'delete-form-' . $employee->id]) !!}
                                                             <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para"
@@ -118,8 +118,8 @@
                                                                     class="ti ti-trash text-white text-white"></i></a>
                                                             </form>
                                                         </div>
-                                                    @endcan -->
-                                                   
+                                                    @endcan
+
                                                 </span>
                                             @else
                                                 <i class="ti ti-lock"></i>

@@ -259,7 +259,7 @@ class LeaveController extends Controller
 
         if ($setings['leave_status'] == 1) {
             $employee     = Employee::where('id', $leave->employee_id)->where('created_by', '=', \Auth::user()->creatorId())->first();
-            //  dd($request->status );   
+            //  dd($request->status );
             $uArr = [
                 'leave_email' => $employee->email,
                 'leave_status_name' => $employee->name,

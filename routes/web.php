@@ -322,6 +322,10 @@ Route::group(['middleware' => ['verified']], function () {
         ]
     );
 
+    // getcities
+    Route::get('getcities/{id}','BranchController@getcities')->name('getcities');
+    Route::get('getdistict/{id}','BranchController@getdistict')->name('getdistict');
+
     //LocationController
     Route::resource('location', LocationController::class)->middleware(
         [
@@ -329,6 +333,14 @@ Route::group(['middleware' => ['verified']], function () {
             'XSS',
         ]
     );
+    //billing_addres
+    Route::resource('billing_addres', BillingAddresController::class)->middleware(
+        [
+            'auth',
+            'XSS',
+        ]
+    );
+
     Route::resource('awardtype', AwardTypeController::class)->middleware(
         [
             'auth',
@@ -1531,7 +1543,7 @@ Route::group(['middleware' => ['verified']], function () {
     //storage Setting
     Route::post('storage-settings', [SettingsController::class, 'storageSettingStore'])->name('storage.setting.store')->middleware(['auth', 'XSS']);
 
-    // Route by disma 
+    // Route by disma
 
 
     Route::get('active_holiday/{id}', [HolidayController::class, 'active_holiday'])->name('active_holiday');

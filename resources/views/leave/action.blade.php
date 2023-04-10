@@ -37,11 +37,11 @@
     </div>
 </div>
 
-@if (Auth::user()->type == 'company' || Auth::user()->type == 'hr')
+{{-- @if (Auth::user()->type == 'company' || Auth::user()->type == 'hr') --}}
     <div class="modal-footer">
         <input type="submit" value="{{ __('Approved') }}" class="btn btn-success rounded" name="status">
         <input type="submit" value="{{ __('Reject') }}" class="btn btn-danger rounded" name="status">
     </div>
-@endif
+{{-- @endif --}}
 
 {{ Form::close() }}
