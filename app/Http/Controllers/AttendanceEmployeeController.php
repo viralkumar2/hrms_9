@@ -12,11 +12,45 @@ use App\Models\User;
 use App\Models\Utility;
 use Carbon\Carbon;
 use DateTime;
+use DB;
+use App\Email;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AttendanceEmployeeController extends Controller
 {
+
+    public function employee_birthday(){
+        $total_birthday = Employee::whereDate('dob',date('y-m-d'))->get();
+        return view('Birthday.index',compact('total_birthday'));
+    }
+
+    public function employee_anniversary(){
+        $total_anniversary  = Employee::whereMonth('company_doj',date('m'))
+        ->whereDay('company_doj',date('d'))->get();
+        return view('Birthday.anniversary',compact('total_anniversary'));
+    }
+
+    public function currunt_month_holiday(){
+        $total_holidays = DB::table('holidays')->where('created_by', '=', \Auth::user()->creatorId());
+        $total_holidays = $total_holidays->whereMonth('end_date',date('m'))
+        ->whereYear('end_date',date('Y'))->whereMonth('start_date',date('m'))
+        ->whereYear('start_date',date('Y'))->get();
+        return view('Birthday.crntmonth_holiday',compact('total_holidays'));
+
+    }
+
+    public function send_employee_email($id){
+        $data = Email::employee_email($id);
+        return redirect()->back()->with('success', __('Employee notification send.'));
+
+    }
+
+    public function employee_anniversary_send_email($id){
+        $data = Email::employee_anniversary_send_email($id);
+        return redirect()->back()->with('success', __('Employee notification send.'));
+    }
+
     public function index(Request $request)
     {
         if (\Auth::user()->can('Manage Attendance')) {

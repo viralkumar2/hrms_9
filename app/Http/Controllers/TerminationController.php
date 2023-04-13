@@ -87,10 +87,10 @@ class TerminationController extends Controller
                 $employee           = Employee::find($termination->employee_id);
 
             $uArr = [
-                'employee_termination_name'=>$employee->name, 
+                'employee_termination_name'=>$employee->name,
                 'notice_date'=>$request->notice_date,
-                'termination_date'=>$request->termination_date, 
-                'termination_type'=>$request->termination_type, 
+                'termination_date'=>$request->termination_date,
+                'termination_type'=>$request->termination_type,
              ];
           $resp = Utility::sendEmailTemplate('employee_termination', [$employee->email], $uArr);
            return redirect()->route('termination.index')->with('success', __('Termination  successfully created.'). ((!empty($resp) && $resp['is_success'] == false && !empty($resp['error'])) ? '<br> <span class="text-danger">' . $resp['error'] . '</span>' : ''));

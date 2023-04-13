@@ -108,7 +108,7 @@
                                     <?php $branch = DB::table('branches')->where('id',$holiday->branch_name)->first();  ?>
 
                                     @if($branch)
-                                    {{$branch->name }}
+                                        {{$branch->name }}
                                     @endif
                                 </td>
                                 <td>{{ \Auth::user()->dateFormat($holiday->start_date) }}</td>

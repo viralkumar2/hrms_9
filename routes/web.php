@@ -834,6 +834,12 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('import/attendance/file', [AttendanceEmployeeController::class, 'importFile'])->name('attendance.file.import');
     Route::post('import/attendance', [AttendanceEmployeeController::class, 'import'])->name('attendance.import');
 
+    Route::get('employee_birthday','AttendanceEmployeeController@employee_birthday')->name('employee_birthday');
+    Route::get('send_employee_email/{id}','AttendanceEmployeeController@send_employee_email')->name('send_employee_email');
+    Route::get('employee_anniversary','AttendanceEmployeeController@employee_anniversary')->name('employee_anniversary');
+    Route::get('currunt_month_holiday','AttendanceEmployeeController@currunt_month_holiday')->name('currunt_month_holiday');
+    Route::get('employee_anniversary_send_email/{id}','AttendanceEmployeeController@employee_anniversary_send_email')->name('employee_anniversary_send_email');
+
     Route::resource('timesheet', TimeSheetController::class)->middleware(
         [
             'auth',

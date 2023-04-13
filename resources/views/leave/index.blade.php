@@ -168,7 +168,7 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(data) {
-
+                    console.log("testt",data);
                     $('#leave_type_id').empty();
                     $('#leave_type_id').append(
                         '<option value="">{{ __('Select Leave Type') }}</option>');

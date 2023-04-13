@@ -26,7 +26,7 @@ class LeaveController extends Controller
             if (\Auth::user()->type == 'employee') {
                 $user     = \Auth::user();
                 $employee = Employee::where('user_id', '=', $user->id)->first();
-                $leaves   = LocalLeave::where('employee_id', '=', $employee->id)->get();
+                $leaves   = LocalLeave::where('employee_id', '=', $employee->id)->where('created_by', '=', \Auth::user()->creatorId())->get();
             } else {
                 $leaves = LocalLeave::where('created_by', '=', \Auth::user()->creatorId())->get();
             }
@@ -39,6 +39,7 @@ class LeaveController extends Controller
 
     public function create()
     {
+
         if (\Auth::user()->can('Create Leave')) {
             if (Auth::user()->type == 'employee') {
                 $employees = Employee::where('user_id', '=', \Auth::user()->id)->get()->pluck('name', 'id');
@@ -281,14 +282,15 @@ class LeaveController extends Controller
 
     public function jsoncount(Request $request)
     {
-        $leave_counts = LeaveType::select(\DB::raw('COALESCE(SUM(leaves.total_leave_days),0) AS total_leave, leave_types.title, leave_types.days,leave_types.id'))
+
+        $leave_counts = LeaveType::select(\DB::raw('COALESCE(SUM(leaves.total_leave_days),0) AS total_leave, leave_types.created_by,leave_types.title,leave_types.days,leave_types.id'))
             ->leftjoin(
                 'leaves',
                 function ($join) use ($request) {
                     $join->on('leaves.leave_type_id', '=', 'leave_types.id');
                     $join->where('leaves.employee_id', '=', $request->employee_id);
                 }
-            )->groupBy('leaves.leave_type_id')->get();
+            )->groupBy('leaves.leave_type_id')->where('leave_types.created_by',\Auth::user()->creatorId())->get();
 
         return $leave_counts;
     }

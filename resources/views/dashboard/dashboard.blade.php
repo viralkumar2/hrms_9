@@ -5,7 +5,19 @@
 @endsection
 @php
     $setting = App\Models\Utility::settings();
-    
+
+    $total_birthday = DB::table('employees')->where('created_by', '=', \Auth::user()->creatorId())->whereDate('dob',date('y-m-d'))->count();
+    $total_anniversary  = DB::table('employees')->where('created_by', '=', \Auth::user()->creatorId())->whereMonth('company_doj',date('m'))
+    ->whereDay('company_doj',date('d'))->count();
+
+    //holidaycount
+    $total_holidays = DB::table('holidays')->where('created_by', '=', \Auth::user()->creatorId());
+    $total_holidays = $total_holidays->whereMonth('end_date',date('m'))
+    ->whereYear('end_date',date('Y'))->whereMonth('start_date',date('m'))
+    ->whereYear('start_date',date('Y'))->count();
+
+    $total_lastDay = DB::table('resignations')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
 @endphp
 @section('content')
     <div class="row">
@@ -290,6 +302,109 @@
                 </div>
             </div>
 
+            {{-- //Bitrday  --}}
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ route('employee_birthday')}}">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto mb-3 mb-sm-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-warning">
+                                        <i class="ti ti-cast"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <small class="text-muted">{{ __('Total') }}</small>
+                                        <h6 class="m-0">{{ __('Birthday') }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto text-end">
+                                <h4 class="m-0 text-warning">{{ $total_birthday }}</h4>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+            </div>
+            {{-- //Work anivarsary --}}
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ route('employee_anniversary')}}">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-auto mb-3 mb-sm-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="theme-avtar bg-warning">
+                                            <i class="ti ti-cast"></i>
+                                        </div>
+                                        <div class="ms-3">
+                                            <small class="text-muted">{{ __('Total') }}</small>
+                                            <h6 class="m-0">{{ __('Work Anniversary') }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto text-end">
+                                    <h4 class="m-0 text-warning">{{ $total_anniversary }}</h4>
+                                </div>
+                            </div></a>
+                    </div>
+                </div>
+            </div>
+
+            {{-- //Last Working Day --}}
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ route('resignation.index')}}">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto mb-3 mb-sm-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-warning">
+                                        <i class="ti ti-cast"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <small class="text-muted">{{ __('Total') }}</small>
+                                        <h6 class="m-0">{{ __('Resigned Employee') }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto text-end">
+                                <h4 class="m-0 text-warning">{{ $total_lastDay }}</h4>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+            </div>
+            {{-- </div> --}}
+
+            {{-- //Holidays --}}
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ route('currunt_month_holiday')}}">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto mb-3 mb-sm-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-warning">
+                                        <i class="ti ti-cast"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <small class="text-muted">{{ __('Total') }}</small>
+                                        <h6 class="m-0">{{ __('Holidays') }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto text-end">
+                                <h4 class="m-0 text-warning">{{ $total_holidays }}</h4>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+            </div>
             {{-- </div> --}}
 
             {{-- end --}}
